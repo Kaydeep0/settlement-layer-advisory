@@ -1,43 +1,50 @@
 #!/usr/bin/env python3
 """
 Settlement Layer Advisory — Compliance Checklist PDF Generator
-Produces checklist.pdf using reportlab canvas for full layout control.
+Rewritten using ReportLab Platypus for reliable multi-page layout.
 """
 
 import os
+from reportlab.platypus import (
+    SimpleDocTemplate, Spacer, Table, TableStyle,
+    KeepTogether, Flowable, Paragraph
+)
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.pagesizes import LETTER
-from reportlab.lib.colors import HexColor
-from reportlab.pdfgen import canvas
+from reportlab.lib.colors import HexColor, Color
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
-# ── Colors ────────────────────────────────────────────────────────────────────
+# ── Colors ─────────────────────────────────────────────────────────────────────
 BG      = HexColor('#0a0a0f')
-CARD    = HexColor('#111120')
 TEXT    = HexColor('#e8e8e8')
 ACCENT  = HexColor('#e8930a')
 MUTED   = HexColor('#8a8aa0')
-BORDER  = HexColor('#1e1e30')
-WHITE   = HexColor('#ffffff')
-GRAY    = HexColor('#888888')
 DARK    = HexColor('#0a0a0f')
+BORDER2 = HexColor('#2a2a40')
 
-# ── Page geometry ─────────────────────────────────────────────────────────────
-W, H        = LETTER          # 612 x 792 pts
-ML          = 60              # margin left
-MR          = W - 60          # margin right
-CW          = MR - ML         # content width = 492
-FOOTER_Y    = 28
-FOOTER_LINE = FOOTER_Y + 14
-TOP_START   = H - 58          # first y position after top margin
+# ── Page geometry ───────────────────────────────────────────────────────────────
+W, H   = LETTER          # 612 x 792 pt
+ML     = 60              # left margin
+MR     = 60              # right margin
+MT     = 72              # top margin
+MB     = 72              # bottom margin
+CW     = W - ML - MR    # content width: 492 pt
+
+FOOTER_Y      = 42
+FOOTER_RULE_Y = 55
+
+# Height the canvas header occupies on page 1 (Spacer must match this).
+# Calculated from top of content area (y=720) to end of source text + 24pt gap.
+HEADER1_H = 158
 
 
-# ── Text wrapping ─────────────────────────────────────────────────────────────
-def wrap(text: str, font: str, size: float, max_width: float) -> list:
+# ── Text-wrap helper ────────────────────────────────────────────────────────────
+def _wrap(text: str, font: str, size: float, max_w: float) -> list:
     words = text.split()
     lines, cur = [], []
     for w in words:
         test = ' '.join(cur + [w])
-        if stringWidth(test, font, size) <= max_width:
+        if stringWidth(test, font, size) <= max_w:
             cur.append(w)
         else:
             if cur:
@@ -48,297 +55,266 @@ def wrap(text: str, font: str, size: float, max_width: float) -> list:
     return lines or ['']
 
 
-# ── PDF builder ───────────────────────────────────────────────────────────────
-class ChecklistPDF:
-    def __init__(self, path: str):
-        self.c = canvas.Canvas(path, pagesize=LETTER)
-        self.c.setTitle('The RWA Protocol Compliance Checklist')
-        self.c.setAuthor('Settlement Layer Advisory')
-        self.c.setSubject('Powered by Eigenstate Research')
-        self.y   = TOP_START
-        self.pg  = 0
+# ── Canvas callbacks ────────────────────────────────────────────────────────────
+def _draw_bg_watermark_footer(canvas, doc):
+    """Dark background, diagonal watermark, footer rule and text."""
+    # Background
+    canvas.saveState()
+    canvas.setFillColor(BG)
+    canvas.rect(0, 0, W, H, fill=1, stroke=0)
+    canvas.restoreState()
 
-    # ── Page control ──────────────────────────────────────────────────────────
-    def _bg(self):
-        self.c.setFillColor(BG)
-        self.c.rect(0, 0, W, H, fill=1, stroke=0)
+    # Watermark
+    canvas.saveState()
+    canvas.setFillColor(Color(0.9, 0.9, 0.9, alpha=0.03))
+    canvas.setFont('Helvetica-Bold', 42)
+    canvas.translate(306, 396)
+    canvas.rotate(45)
+    canvas.drawCentredString(0, 0, 'SETTLEMENT LAYER ADVISORY')
+    canvas.restoreState()
 
-    def _footer(self):
-        self.c.setStrokeColor(ACCENT)
-        self.c.setLineWidth(0.4)
-        self.c.line(ML, FOOTER_LINE, MR, FOOTER_LINE)
-        self.c.setFillColor(MUTED)
-        self.c.setFont('Helvetica', 6.5)
-        txt = ('Settlement Layer Advisory  |  Powered by Eigenstate Research  |  '
-               'This checklist is for informational purposes only and does not '
-               'constitute legal advice.')
-        self.c.drawCentredString(W / 2, FOOTER_Y, txt)
+    # Footer rule
+    canvas.setStrokeColor(BORDER2)
+    canvas.setLineWidth(0.5)
+    canvas.line(ML, FOOTER_RULE_Y, W - MR, FOOTER_RULE_Y)
 
-    def _watermark(self):
-        self.c.saveState()
-        self.c.setFillColor(GRAY)
-        self.c.setFillAlpha(0.03)
-        self.c.setFont('Helvetica-Bold', 36)
-        self.c.translate(W / 2, 200)
-        self.c.rotate(45)
-        self.c.drawCentredString(0, 0, 'SETTLEMENT LAYER ADVISORY')
-        self.c.restoreState()
-
-    def new_page(self):
-        if self.pg > 0:
-            self._footer()
-            self.c.showPage()
-        self.pg += 1
-        self._bg()
-        self._watermark()
-        self.y = TOP_START
-
-    def need_page(self, pts: float) -> bool:
-        return self.y - pts < FOOTER_LINE + 30
-
-    def gap(self, pts: float):
-        self.y -= pts
-
-    # ── Drawing primitives ────────────────────────────────────────────────────
-    def line_text(self, text: str, font: str, size: float, color: HexColor,
-                  x: float = None, leading: float = None) -> float:
-        """Draw one wrapped block, return height used."""
-        if x is None:
-            x = ML
-        max_w = MR - x
-        lines = wrap(text, font, size, max_w)
-        lh = leading or size * 1.55
-        for ln in lines:
-            self.c.setFillColor(color)
-            self.c.setFont(font, size)
-            self.c.drawString(x, self.y, ln)
-            self.y -= lh
-        return len(lines) * lh
-
-    def draw_rule(self, color: HexColor = None, lw: float = 0.75):
-        self.c.setStrokeColor(color or ACCENT)
-        self.c.setLineWidth(lw)
-        self.c.line(ML, self.y, MR, self.y)
-        self.y -= 6
-
-    def draw_rect_bg(self, x, y, w, h, fill: HexColor):
-        self.c.setFillColor(fill)
-        self.c.rect(x, y, w, h, fill=1, stroke=0)
-
-    def _draw_logo_mark(self, ox: float, oy: float):
-        """Draw settlement layer triangle topology mark, 40x40pt at (ox, oy)."""
-        # SVG viewBox 200x200, scale=0.2
-        # Absolute SVG node positions → PDF: px = ox + sx*0.2, py = (oy+40) - sy*0.2
-        s = 0.2
-        top = (ox + 100*s, oy + 40 - 20*s)   # (72, 766)
-        br  = (ox + 178*s, oy + 40 - 155*s)  # (87.6, 739)
-        bl  = (ox + 22*s,  oy + 40 - 155*s)  # (56.4, 739)
-        ctr = (ox + 100*s, oy + 40 - 100*s)  # (72, 750)
-
-        self.c.saveState()
-
-        # Triangle edges (amber, opacity 0.6)
-        self.c.setStrokeColor(ACCENT)
-        self.c.setStrokeAlpha(0.6)
-        self.c.setLineWidth(0.75)
-        self.c.line(top[0], top[1], br[0], br[1])
-        self.c.line(top[0], top[1], bl[0], bl[1])
-        self.c.line(br[0],  br[1],  bl[0], bl[1])
-
-        # Center spokes (amber, opacity 0.3)
-        self.c.setStrokeAlpha(0.3)
-        self.c.setLineWidth(0.4)
-        self.c.line(ctr[0], ctr[1], top[0], top[1])
-        self.c.line(ctr[0], ctr[1], br[0],  br[1])
-        self.c.line(ctr[0], ctr[1], bl[0],  bl[1])
-
-        # Outer nodes: white ring + white fill dot
-        self.c.setStrokeColor(WHITE)
-        self.c.setStrokeAlpha(1.0)
-        self.c.setFillColor(WHITE)
-        self.c.setLineWidth(0.8)
-        for nx, ny in [top, br, bl]:
-            self.c.circle(nx, ny, 2.5, fill=0, stroke=1)
-            self.c.circle(nx, ny, 1.0, fill=1, stroke=0)
-
-        # Center node: amber ring + amber dot
-        self.c.setStrokeColor(ACCENT)
-        self.c.setFillColor(ACCENT)
-        self.c.setLineWidth(1.0)
-        self.c.circle(ctr[0], ctr[1], 3.5, fill=0, stroke=1)
-        self.c.circle(ctr[0], ctr[1], 1.5, fill=1, stroke=0)
-
-        self.c.restoreState()
-
-    # ── Composed elements ─────────────────────────────────────────────────────
-    def header(self):
-        """First page header block."""
-        # Logo mark at x=52, y=730 (40x40pt, next to header text)
-        self._draw_logo_mark(52, 730)
-
-        # Brand name shifted right to clear the logo mark
-        self.c.setFillColor(WHITE)
-        self.c.setFont('Helvetica-Bold', 15)
-        self.c.drawString(97, self.y, 'SETTLEMENT LAYER ADVISORY')
-        self.y -= 20
-
-        self.c.setFillColor(MUTED)
-        self.c.setFont('Helvetica', 8)
-        self.c.drawString(ML, self.y, 'Powered by Eigenstate Research')
-        self.y -= 18
-
-        self.draw_rule(ACCENT, 1.0)
-        self.y -= 10
-
-    def title_block(self):
-        self.c.setFillColor(WHITE)
-        self.c.setFont('Helvetica-Bold', 22)
-        self.c.drawString(ML, self.y, 'The RWA Protocol Compliance Checklist')
-        self.y -= 26
-
-        self.c.setFillColor(TEXT)
-        self.c.setFont('Helvetica', 11)
-        self.c.drawString(ML, self.y, 'What your tokenized offering needs before it touches a US investor')
-        self.y -= 20
-
-        self.c.setFillColor(MUTED)
-        self.c.setFont('Helvetica-Oblique', 7.5)
-        source = ('Based on SEC January 28 2026 joint statement on tokenized securities, '
-                  'Securities Act of 1933, and current FINRA requirements')
-        lines = wrap(source, 'Helvetica-Oblique', 7.5, CW)
-        for ln in lines:
-            self.c.drawString(ML, self.y, ln)
-            self.y -= 11
-        self.y -= 10
-
-    def section_header(self, num: str, title: str):
-        needed = 36
-        if self.need_page(needed):
-            self.new_page()
-        self.y -= 20
-        # Number badge
-        badge_w = stringWidth(num, 'Helvetica-Bold', 8) + 14
-        self.c.setFillColor(ACCENT)
-        self.c.roundRect(ML, self.y - 2, badge_w, 14, 2, fill=1, stroke=0)
-        self.c.setFillColor(DARK)
-        self.c.setFont('Helvetica-Bold', 8)
-        self.c.drawString(ML + 7, self.y + 3, num)
-        # Title
-        self.c.setFillColor(ACCENT)
-        self.c.setFont('Helvetica-Bold', 11)
-        self.c.drawString(ML + badge_w + 8, self.y + 3, title)
-        self.y -= 20
-
-        # Thin amber underline
-        self.c.setStrokeColor(ACCENT)
-        self.c.setLineWidth(0.4)
-        self.c.line(ML, self.y, MR, self.y)
-        self.y -= 10
-
-    def section_note(self, note: str):
-        self.c.setFillColor(MUTED)
-        self.c.setFont('Helvetica-Oblique', 8)
-        self.c.drawString(ML, self.y, note)
-        self.y -= 22  # 12pt text descent + 10pt gap before first item
-
-    def checkbox_item(self, text: str):
-        """Draw a checkbox row with [ ] in amber and wrapped text in Courier."""
-        font       = 'Courier'
-        font_size  = 10
-        leading    = 18
-        box_str    = '[ ]'
-        box_w      = stringWidth(box_str, 'Courier-Bold', font_size) + 6
-        text_x     = ML + box_w
-        max_text_w = MR - text_x
-
-        lines = wrap(text, font, font_size, max_text_w)
-        total_h = len(lines) * leading + 8  # 8pt padding below item
-
-        if self.need_page(total_h):
-            self.new_page()
-
-        # Checkbox
-        self.c.setFillColor(ACCENT)
-        self.c.setFont('Courier-Bold', font_size)
-        self.c.drawString(ML, self.y, box_str)
-
-        # Text lines
-        self.c.setFillColor(TEXT)
-        self.c.setFont(font, font_size)
-        for i, ln in enumerate(lines):
-            self.c.drawString(text_x, self.y, ln)
-            self.y -= leading
-
-        self.y -= 10  # inter-item spacing
-
-    def closing_box(self, heading: str, paragraphs: list, final_line: str):
-        """Amber-background box for the closing call to action."""
-        font_h   = 'Helvetica-Bold'
-        font_b   = 'Helvetica'
-        size_h   = 12
-        size_b   = 8.5
-        leading  = 13
-        pad      = 20
-
-        # Pre-calculate height
-        heading_h = 20
-        total_h   = heading_h + pad
-        all_lines = []
-        for para in paragraphs:
-            ls = wrap(para, font_b, size_b, CW - pad * 2)
-            all_lines.append(ls)
-            total_h += len(ls) * leading + 10
-        # final line
-        fl_lines = wrap(final_line, 'Courier-Bold', size_b, CW - pad * 2)
-        total_h += len(fl_lines) * leading + pad
-
-        if self.need_page(total_h + 20):
-            self.new_page()
-
-        self.y -= 12
-        box_y = self.y - total_h
-        box_h = total_h
-
-        # Draw amber background
-        self.c.setFillColor(ACCENT)
-        self.c.roundRect(ML, box_y, CW, box_h, 4, fill=1, stroke=0)
-
-        # Draw content
-        ty = self.y - pad
-
-        self.c.setFillColor(DARK)
-        self.c.setFont(font_h, size_h)
-        self.c.drawString(ML + pad, ty, heading)
-        ty -= heading_h
-
-        for ln_group in all_lines:
-            for ln in ln_group:
-                self.c.setFillColor(DARK)
-                self.c.setFont(font_b, size_b)
-                self.c.drawString(ML + pad, ty, ln)
-                ty -= leading
-            ty -= 8
-
-        # Final amber-on-dark inset line
-        inset_x = ML + pad
-        inset_w = CW - pad * 2
-        inset_h = len(fl_lines) * leading + 10
-        self.c.setFillColor(DARK)
-        self.c.roundRect(inset_x - 4, ty - inset_h + leading, inset_w + 8, inset_h, 3, fill=1, stroke=0)
-        self.c.setFillColor(ACCENT)
-        self.c.setFont('Courier-Bold', size_b)
-        for ln in fl_lines:
-            self.c.drawString(inset_x, ty, ln)
-            ty -= leading
-
-        self.y = box_y - 10
-
-    def save(self):
-        self._footer()
-        self.c.save()
+    # Footer text
+    canvas.setFillColor(MUTED)
+    canvas.setFont('Helvetica', 8)
+    canvas.drawCentredString(
+        W / 2, FOOTER_Y,
+        ('Settlement Layer Advisory  |  Powered by Eigenstate Research  |  '
+         'This checklist is for informational purposes only and does not '
+         'constitute legal advice.')
+    )
 
 
-# ── Content ───────────────────────────────────────────────────────────────────
+def _draw_header_p1(canvas, doc):
+    """Full header block on page 1, drawn from top of content area downward."""
+    y = H - MT  # 720
+
+    canvas.setFillColor(ACCENT)
+    canvas.setFont('Helvetica-Bold', 14)
+    canvas.drawString(ML, y, 'SETTLEMENT LAYER ADVISORY')
+    y -= 20
+
+    canvas.setFillColor(MUTED)
+    canvas.setFont('Helvetica', 9)
+    canvas.drawString(ML, y, 'Powered by Eigenstate Research')
+    y -= 14
+
+    canvas.setStrokeColor(ACCENT)
+    canvas.setLineWidth(1.0)
+    canvas.line(ML, y, W - MR, y)
+    y -= 6
+
+    y -= 20  # space below rule
+
+    canvas.setFillColor(TEXT)
+    canvas.setFont('Helvetica-Bold', 24)
+    canvas.drawString(ML, y, 'The RWA Protocol Compliance Checklist')
+    y -= 32
+
+    canvas.setFillColor(MUTED)
+    canvas.setFont('Helvetica', 12)
+    canvas.drawString(ML, y, 'What your tokenized offering needs before it touches a US investor')
+    y -= 18
+
+    canvas.setFont('Helvetica-Oblique', 8)
+    source = ('Based on SEC January 28 2026 joint statement on tokenized securities, '
+              'Securities Act of 1933, and current FINRA requirements')
+    for ln in _wrap(source, 'Helvetica-Oblique', 8, CW):
+        canvas.drawString(ML, y, ln)
+        y -= 11
+
+
+def _draw_header_p2plus(canvas, doc):
+    """Minimal header for pages 2+, drawn within the top margin."""
+    y = H - 46  # within the 72pt top margin
+
+    canvas.setStrokeColor(ACCENT)
+    canvas.setLineWidth(0.5)
+    canvas.line(ML, y, W - MR, y)
+
+    canvas.setFillColor(ACCENT)
+    canvas.setFont('Helvetica', 9)
+    canvas.drawRightString(W - MR, y - 14, 'Settlement Layer Advisory')
+
+
+def add_page_elements(canvas, doc):
+    _draw_bg_watermark_footer(canvas, doc)
+    if doc.page == 1:
+        _draw_header_p1(canvas, doc)
+    else:
+        _draw_header_p2plus(canvas, doc)
+
+
+# ── Custom flowables ────────────────────────────────────────────────────────────
+
+class SectionHeader(Flowable):
+    """
+    Amber badge + section title + amber rule + optional italic note.
+    Layout (bottom to top in PDF local coords):
+        PAD_BOT | [note+gap] | rule | gap | [badge/title row] | PAD_TOP
+    """
+    PAD_TOP  = 10
+    BADGE_H  = 16
+    RULE_GAP = 8
+    NOTE_H   = 14   # note line height including gap below
+    PAD_BOT  = 12
+
+    def __init__(self, num: str, title: str, note: str = None):
+        super().__init__()
+        self.num   = num
+        self.title = title
+        self.note  = note
+        self.width = CW
+        self.height = (self.PAD_TOP + self.BADGE_H + self.RULE_GAP
+                       + (self.NOTE_H if note else 0) + self.PAD_BOT)
+
+    def wrap(self, availW, availH):
+        return self.width, self.height
+
+    def draw(self):
+        c = self.canv
+        h = self.height
+
+        # Badge + title row sits at top of flowable
+        badge_y = h - self.PAD_TOP - self.BADGE_H
+
+        badge_w = stringWidth(self.num, 'Helvetica-Bold', 9) + 16
+        c.setFillColor(ACCENT)
+        c.roundRect(0, badge_y, badge_w, self.BADGE_H, 2, fill=1, stroke=0)
+        c.setFillColor(DARK)
+        c.setFont('Helvetica-Bold', 9)
+        c.drawString(8, badge_y + 4, self.num)
+
+        c.setFillColor(TEXT)
+        c.setFont('Helvetica-Bold', 14)
+        c.drawString(badge_w + 10, badge_y + 3, self.title)
+
+        # Amber rule
+        rule_y = badge_y - self.RULE_GAP
+        c.setStrokeColor(ACCENT)
+        c.setLineWidth(0.5)
+        c.line(0, rule_y, self.width, rule_y)
+
+        # Optional note
+        if self.note:
+            note_y = rule_y - self.NOTE_H + 2
+            c.setFillColor(MUTED)
+            c.setFont('Helvetica-Oblique', 8)
+            c.drawString(0, note_y, self.note)
+
+
+class ClosingBox(Flowable):
+    """Amber-background CTA box with dark text and dark inset URL strip."""
+
+    PAD = 20
+
+    def __init__(self, heading: str, paragraphs: list, url: str):
+        super().__init__()
+        self.heading    = heading
+        self.paragraphs = paragraphs
+        self.url        = url
+        self.width      = CW
+        self.height     = self._calc_height(CW)
+
+    def _calc_height(self, w: float) -> float:
+        p     = self.PAD
+        max_w = w - p * 2
+        h     = p + 18 + 10   # top pad + heading + gap
+        for para in self.paragraphs:
+            h += len(_wrap(para, 'Helvetica', 10, max_w)) * 14 + 8
+        url_lines = _wrap(self.url, 'Helvetica-Bold', 10, max_w - 8)
+        h += len(url_lines) * 14 + 16   # inset box
+        h += p                           # bottom pad
+        return h
+
+    def wrap(self, availW, availH):
+        self.width  = min(availW, CW)
+        self.height = self._calc_height(self.width)
+        return self.width, self.height
+
+    def draw(self):
+        c     = self.canv
+        p     = self.PAD
+        max_w = self.width - p * 2
+
+        # Amber background
+        c.setFillColor(ACCENT)
+        c.roundRect(0, 0, self.width, self.height, 4, fill=1, stroke=0)
+
+        # Draw from top downward; y is baseline cursor
+        y = self.height - p
+
+        c.setFillColor(DARK)
+        c.setFont('Helvetica-Bold', 12)
+        c.drawString(p, y - 14, self.heading)
+        y -= 28   # heading height + gap
+
+        c.setFont('Helvetica', 10)
+        for para in self.paragraphs:
+            for ln in _wrap(para, 'Helvetica', 10, max_w):
+                c.drawString(p, y - 12, ln)
+                y -= 14
+            y -= 8
+
+        # Dark inset URL strip
+        url_lines = _wrap(self.url, 'Helvetica-Bold', 10, max_w - 8)
+        inset_h   = len(url_lines) * 14 + 12
+        inset_y   = y - inset_h
+        c.setFillColor(DARK)
+        c.roundRect(p - 4, inset_y, self.width - p * 2 + 8, inset_h, 3, fill=1, stroke=0)
+        c.setFillColor(ACCENT)
+        c.setFont('Helvetica-Bold', 10)
+        ty = y - 12
+        for ln in url_lines:
+            c.drawString(p, ty, ln)
+            ty -= 14
+
+
+# ── Styles ──────────────────────────────────────────────────────────────────────
+_CHECKBOX_STYLE = ParagraphStyle(
+    'Checkbox',
+    fontName='Courier-Bold',
+    fontSize=10,
+    textColor=ACCENT,
+    leading=14,
+    spaceBefore=0,
+    spaceAfter=0,
+)
+
+_ITEM_STYLE = ParagraphStyle(
+    'ItemText',
+    fontName='Courier',
+    fontSize=10,
+    textColor=TEXT,
+    leading=14,
+    spaceBefore=0,
+    spaceAfter=0,
+)
+
+
+# ── Checklist item factory ──────────────────────────────────────────────────────
+def _item(text: str) -> Table:
+    """Two-column table: amber [ ] | item text, with 8pt space after."""
+    tbl = Table(
+        [[Paragraph('[ ]', _CHECKBOX_STYLE), Paragraph(text, _ITEM_STYLE)]],
+        colWidths=[22, CW - 22],
+    )
+    tbl.setStyle(TableStyle([
+        ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING',   (0, 0), (-1, -1), 0),
+        ('RIGHTPADDING',  (0, 0), (-1, -1), 0),
+        ('TOPPADDING',    (0, 0), (-1, -1), 0),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+    ]))
+    tbl.spaceAfter = 8
+    return tbl
+
+
+# ── Content ─────────────────────────────────────────────────────────────────────
 SECTION_1 = [
     ('Confirmed whether your token is issuer-sponsored or third-party tokenized '
      'security under the SEC January 28 2026 joint statement.'),
@@ -346,7 +322,7 @@ SECTION_1 = [
      'structures may qualify as security-based swaps requiring additional registration.'),
     ('Offering registered under Securities Act of 1933 or valid exemption confirmed. '
      'Reg D Rule 506(b) or 506(c), or Reg S for offshore.'),
-    ('Form D filed with SEC EDGAR within 15 days of first sale if using Reg D.'),
+    'Form D filed with SEC EDGAR within 15 days of first sale if using Reg D.',
     ('General solicitation rules confirmed. Rule 506(b) prohibits general solicitation. '
      'Rule 506(c) permits it only if all purchasers are verified accredited investors.'),
     ('Master securityholder file structure documented. Onchain records legally '
@@ -364,11 +340,11 @@ SECTION_2 = [
      'reasonable steps requirement.'),
     ('KYC completed per FinCEN requirements. Government-issued ID, proof of '
      'address, beneficial ownership documentation.'),
-    ('AML screening completed against OFAC SDN list and relevant sanctions programs.'),
+    'AML screening completed against OFAC SDN list and relevant sanctions programs.',
     ('Suitability assessment documented. Investment objectives, risk tolerance, '
      'financial situation on file.'),
-    ('Investor representations and warranties executed and countersigned.'),
-    ('State Blue Sky law requirements confirmed for each investor state of residence.'),
+    'Investor representations and warranties executed and countersigned.',
+    'State Blue Sky law requirements confirmed for each investor state of residence.',
 ]
 
 SECTION_3 = [
@@ -380,7 +356,7 @@ SECTION_3 = [
      'Permissioned transfer mechanism in place.'),
     ('FINRA and SEC jurisdictional overlap reviewed for custody structure. '
      'Identify the registered broker-dealer or transfer agent.'),
-    ('On-chain settlement finality documented against applicable clearing rules.'),
+    'On-chain settlement finality documented against applicable clearing rules.',
     ('Wallet address to investor identity mapping maintained and reconciled '
      'against offchain records.'),
 ]
@@ -388,7 +364,7 @@ SECTION_3 = [
 SECTION_4 = [
     ('Antifraud provisions confirmed. All investor communications free from '
      'false or misleading statements per Securities Act Section 17(a).'),
-    ('Reporting obligations confirmed under Exchange Act if applicable.'),
+    'Reporting obligations confirmed under Exchange Act if applicable.',
     ('Investment Company Act of 1940 applicability assessed if structure '
      'resembles a pooled fund.'),
     ('Regulatory monitoring in place. SEC, CFTC, FINRA, and OCC positions '
@@ -398,7 +374,7 @@ SECTION_4 = [
 ]
 
 CLOSING_PARAS = [
-    ('Most protocols we review have gaps in Section 2 and Section 3.'),
+    'Most protocols we review have gaps in Section 2 and Section 3.',
     ('Section 2 requires a licensed securities professional. Your engineers '
      'cannot satisfy the Rule 506(c) verification requirement regardless of '
      'what your legal counsel advises.'),
@@ -409,44 +385,63 @@ CLOSING_PARAS = [
      'reaches your protocol.'),
 ]
 
-CLOSING_FINAL = 'Request a briefing:  kaydeep0.github.io/settlement-layer-advisory'
+CLOSING_URL = 'kaydeep0.github.io/settlement-layer-advisory'
 
 
-# ── Build ─────────────────────────────────────────────────────────────────────
+# ── Build ────────────────────────────────────────────────────────────────────────
+def _section(num, title, items, note=None):
+    """Returns a list of flowables for one section."""
+    header = SectionHeader(num, title, note=note)
+    # Keep header + first item together to prevent orphan headers
+    block = [KeepTogether([header, _item(items[0])])]
+    for text in items[1:]:
+        block.append(_item(text))
+    return block
+
+
 def build(out_path: str):
-    pdf = ChecklistPDF(out_path)
-
-    pdf.new_page()
-    pdf.header()
-    pdf.title_block()
-
-    pdf.section_header('SECTION 1', 'OFFERING STRUCTURE')
-    for item in SECTION_1:
-        pdf.checkbox_item(item)
-
-    pdf.section_header('SECTION 2', 'INVESTOR ONBOARDING')
-    pdf.section_note('Requires licensed professional')
-    for item in SECTION_2:
-        pdf.checkbox_item(item)
-
-    pdf.section_header('SECTION 3', 'SMART CONTRACT AND SETTLEMENT COMPLIANCE')
-    for item in SECTION_3:
-        pdf.checkbox_item(item)
-
-    pdf.section_header('SECTION 4', 'ONGOING COMPLIANCE')
-    for item in SECTION_4:
-        pdf.checkbox_item(item)
-
-    pdf.closing_box(
-        heading='HOW MANY OF THESE ARE UNCHECKED?',
-        paragraphs=CLOSING_PARAS,
-        final_line=CLOSING_FINAL,
+    doc = SimpleDocTemplate(
+        out_path,
+        pagesize=LETTER,
+        leftMargin=ML,
+        rightMargin=MR,
+        topMargin=MT,
+        bottomMargin=MB,
+        title='The RWA Protocol Compliance Checklist',
+        author='Settlement Layer Advisory',
+        subject='Powered by Eigenstate Research',
     )
 
-    pdf.save()
-    print(f'PDF written: {out_path}  ({os.path.getsize(out_path):,} bytes)')
+    story = []
+
+    # Reserve space on page 1 for the canvas-drawn header
+    story.append(Spacer(1, HEADER1_H))
+
+    # Sections
+    story.extend(_section('SECTION 1', 'OFFERING STRUCTURE', SECTION_1))
+    story.extend(_section('SECTION 2', 'INVESTOR ONBOARDING', SECTION_2,
+                          note='Requires licensed professional'))
+    story.extend(_section('SECTION 3', 'SMART CONTRACT AND SETTLEMENT COMPLIANCE', SECTION_3))
+    story.extend(_section('SECTION 4', 'ONGOING COMPLIANCE', SECTION_4))
+
+    # Closing box
+    story.append(Spacer(1, 16))
+    story.append(ClosingBox(
+        heading='HOW MANY OF THESE ARE UNCHECKED?',
+        paragraphs=CLOSING_PARAS,
+        url=CLOSING_URL,
+    ))
+
+    doc.build(
+        story,
+        onFirstPage=add_page_elements,
+        onLaterPages=add_page_elements,
+    )
+
+    size = os.path.getsize(out_path)
+    print(f'PDF written: {out_path}  ({size:,} bytes)')
 
 
 if __name__ == '__main__':
-    out = os.path.join(os.path.dirname(__file__), 'checklist.pdf')
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'checklist.pdf')
     build(out)
