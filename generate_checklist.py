@@ -125,13 +125,61 @@ class ChecklistPDF:
         self.c.setFillColor(fill)
         self.c.rect(x, y, w, h, fill=1, stroke=0)
 
+    def _draw_logo_mark(self, ox: float, oy: float):
+        """Draw settlement layer triangle topology mark, 40x40pt at (ox, oy)."""
+        # SVG viewBox 200x200, scale=0.2
+        # Absolute SVG node positions → PDF: px = ox + sx*0.2, py = (oy+40) - sy*0.2
+        s = 0.2
+        top = (ox + 100*s, oy + 40 - 20*s)   # (72, 766)
+        br  = (ox + 178*s, oy + 40 - 155*s)  # (87.6, 739)
+        bl  = (ox + 22*s,  oy + 40 - 155*s)  # (56.4, 739)
+        ctr = (ox + 100*s, oy + 40 - 100*s)  # (72, 750)
+
+        self.c.saveState()
+
+        # Triangle edges (amber, opacity 0.6)
+        self.c.setStrokeColor(ACCENT)
+        self.c.setStrokeAlpha(0.6)
+        self.c.setLineWidth(0.75)
+        self.c.line(top[0], top[1], br[0], br[1])
+        self.c.line(top[0], top[1], bl[0], bl[1])
+        self.c.line(br[0],  br[1],  bl[0], bl[1])
+
+        # Center spokes (amber, opacity 0.3)
+        self.c.setStrokeAlpha(0.3)
+        self.c.setLineWidth(0.4)
+        self.c.line(ctr[0], ctr[1], top[0], top[1])
+        self.c.line(ctr[0], ctr[1], br[0],  br[1])
+        self.c.line(ctr[0], ctr[1], bl[0],  bl[1])
+
+        # Outer nodes: white ring + white fill dot
+        self.c.setStrokeColor(WHITE)
+        self.c.setStrokeAlpha(1.0)
+        self.c.setFillColor(WHITE)
+        self.c.setLineWidth(0.8)
+        for nx, ny in [top, br, bl]:
+            self.c.circle(nx, ny, 2.5, fill=0, stroke=1)
+            self.c.circle(nx, ny, 1.0, fill=1, stroke=0)
+
+        # Center node: amber ring + amber dot
+        self.c.setStrokeColor(ACCENT)
+        self.c.setFillColor(ACCENT)
+        self.c.setLineWidth(1.0)
+        self.c.circle(ctr[0], ctr[1], 3.5, fill=0, stroke=1)
+        self.c.circle(ctr[0], ctr[1], 1.5, fill=1, stroke=0)
+
+        self.c.restoreState()
+
     # ── Composed elements ─────────────────────────────────────────────────────
     def header(self):
         """First page header block."""
-        # Brand name
+        # Logo mark at x=52, y=730 (40x40pt, next to header text)
+        self._draw_logo_mark(52, 730)
+
+        # Brand name shifted right to clear the logo mark
         self.c.setFillColor(WHITE)
         self.c.setFont('Helvetica-Bold', 15)
-        self.c.drawString(ML, self.y, 'SETTLEMENT LAYER ADVISORY')
+        self.c.drawString(97, self.y, 'SETTLEMENT LAYER ADVISORY')
         self.y -= 20
 
         self.c.setFillColor(MUTED)

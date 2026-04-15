@@ -1,0 +1,18 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(100,110)">
+    <line x1="0" y1="-90" x2="78" y2="45" stroke="#e8930a" stroke-width="1" opacity="0.6"/>
+    <line x1="0" y1="-90" x2="-78" y2="45" stroke="#e8930a" stroke-width="1" opacity="0.6"/>
+    <line x1="78" y1="45" x2="-78" y2="45" stroke="#e8930a" stroke-width="1" opacity="0.6"/>
+    <line x1="0" y1="-10" x2="0" y2="-90" stroke="#e8930a" stroke-width="0.5" opacity="0.3"/>
+    <line x1="0" y1="-10" x2="78" y2="45" stroke="#e8930a" stroke-width="0.5" opacity="0.3"/>
+    <line x1="0" y1="-10" x2="-78" y2="45" stroke="#e8930a" stroke-width="0.5" opacity="0.3"/>
+    <circle cx="0" cy="-90" r="8" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+    <circle cx="0" cy="-90" r="3" fill="#e8e8e8"/>
+    <circle cx="78" cy="45" r="8" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+    <circle cx="78" cy="45" r="3" fill="#e8e8e8"/>
+    <circle cx="-78" cy="45" r="8" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+    <circle cx="-78" cy="45" r="3" fill="#e8e8e8"/>
+    <circle cx="0" cy="-10" r="12" fill="none" stroke="#e8930a" stroke-width="2"/>
+    <circle cx="0" cy="-10" r="5" fill="#e8930a"/>
+  </g>
+</svg>

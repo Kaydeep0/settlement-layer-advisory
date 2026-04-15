@@ -1,30 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <!-- Eigenstate: concentric ellipses tilted 15 degrees, outer=amber, inner=cyan -->
-
-  <g transform="rotate(15, 100, 100)">
-    <!-- Outermost ring: amber, very faint -->
-    <ellipse cx="100" cy="100" rx="82" ry="32" fill="none" stroke="#e8930a" stroke-width="0.75" opacity="0.20"/>
-
-    <!-- Ring 2: amber, slightly more visible -->
-    <ellipse cx="100" cy="100" rx="70" ry="27" fill="none" stroke="#e8930a" stroke-width="0.9"  opacity="0.30"/>
-
-    <!-- Ring 3: amber-to-mid, fading toward cyan -->
-    <ellipse cx="100" cy="100" rx="57" ry="22" fill="none" stroke="#c47a08" stroke-width="1.0"  opacity="0.45"/>
-
-    <!-- Ring 4: mid transition -->
-    <ellipse cx="100" cy="100" rx="44" ry="17" fill="none" stroke="#8ea890" stroke-width="1.1"  opacity="0.60"/>
-
-    <!-- Ring 5: closer to cyan -->
-    <ellipse cx="100" cy="100" rx="32" ry="12" fill="none" stroke="#4fc3c3" stroke-width="1.25" opacity="0.75"/>
-
-    <!-- Ring 6: cyan, bright -->
-    <ellipse cx="100" cy="100" rx="20" ry="7.5" fill="none" stroke="#4fc3c3" stroke-width="1.5"  opacity="0.90"/>
-
-    <!-- Ring 7: innermost ellipse, full opacity -->
-    <ellipse cx="100" cy="100" rx="10" ry="4"   fill="none" stroke="#4fc3c3" stroke-width="1.75" opacity="1.0"/>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(100,100)">
+    <ellipse cx="0" cy="0" rx="100" ry="30" fill="none" stroke="#e8930a" stroke-width="1" opacity="0.2" transform="rotate(-15)"/>
+    <ellipse cx="0" cy="0" rx="82" ry="24" fill="none" stroke="#e8930a" stroke-width="1.2" opacity="0.35" transform="rotate(-15)"/>
+    <ellipse cx="0" cy="0" rx="65" ry="19" fill="none" stroke="#c8a050" stroke-width="1.5" opacity="0.5" transform="rotate(-15)"/>
+    <ellipse cx="0" cy="0" rx="48" ry="14" fill="none" stroke="#90c8c8" stroke-width="1.8" opacity="0.65" transform="rotate(-15)"/>
+    <ellipse cx="0" cy="0" rx="32" ry="9" fill="none" stroke="#4fc3c3" stroke-width="2" opacity="0.8" transform="rotate(-15)"/>
+    <ellipse cx="0" cy="0" rx="18" ry="5" fill="none" stroke="#4fc3c3" stroke-width="2.5" opacity="1" transform="rotate(-15)"/>
+    <circle cx="0" cy="0" r="10" fill="#0a0a0f" stroke="#4fc3c3" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="5" fill="#4fc3c3"/>
   </g>
-
-  <!-- Solid center point -->
-  <circle cx="100" cy="100" r="3.5" fill="#4fc3c3" opacity="1.0"/>
-  <circle cx="100" cy="100" r="1.5" fill="#ffffff" opacity="0.9"/>
 </svg>

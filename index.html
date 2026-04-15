@@ -93,6 +93,8 @@
     }
 
     .logo {
+      display: flex;
+      align-items: center;
       font-size: 15px;
       font-weight: 600;
       color: var(--white);
@@ -101,6 +103,14 @@
 
     .logo span {
       color: var(--accent);
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
     }
 
     nav {
@@ -857,6 +867,14 @@
       }
     }
 
+    /* ── EIGENSTATE MARK ────────────────────────────────── */
+    .eigenstate-mark {
+      width: 48px;
+      height: 48px;
+      display: block;
+      margin-bottom: 16px;
+    }
+
     /* ── SCROLL PROMPT ───────────────────────────────────── */
     .scroll-prompt {
       display: flex;
@@ -916,7 +934,10 @@
 <header>
   <div class="container">
     <div class="header-inner">
-      <div class="logo">Settlement<span> Layer</span> Advisory</div>
+      <div class="logo">
+        <img src="logo-sla.svg" alt="Settlement Layer Advisory" class="logo-mark">
+        Settlement<span> Layer</span> Advisory
+      </div>
       <nav class="desktop-nav" id="main-nav">
         <a href="#services">Services</a>
         <a href="#eigenstate">About</a>
@@ -1056,6 +1077,7 @@
   <div class="container">
     <div class="eigenstate-inner">
       <div class="eigenstate-text">
+        <img src="logo-eigenstate.svg" alt="" class="eigenstate-mark">
         <div class="section-label">Eigenstate Research</div>
         <h2 class="section-title">Regulatory Intelligence Backed by On-Chain Proof</h2>
         <p>
@@ -1134,7 +1156,10 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="logo">Settlement<span> Layer</span> Advisory</div>
+        <div class="logo">
+          <img src="logo-sla.svg" alt="Settlement Layer Advisory" class="logo-mark">
+          Settlement<span> Layer</span> Advisory
+        </div>
         <div class="footer-powered">Powered by Eigenstate Research</div>
         <div class="footer-disclaimer">
           Securities services provided through licensed professionals (Series 7, Series 66, active). Nothing on this site constitutes legal advice. Regulatory intelligence reports are research only, not investment advice.
