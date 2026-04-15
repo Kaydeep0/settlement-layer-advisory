@@ -36,7 +36,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-      font-size: 15px;
+      font-size: 18px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
@@ -182,10 +182,12 @@
 
     .hero-eyebrow::before {
       content: '';
-      display: block;
+      display: inline-block;
       width: 20px;
       height: 1px;
       background: var(--accent);
+      margin-right: 8px;
+      vertical-align: middle;
     }
 
     h1 {
@@ -479,7 +481,7 @@
 
     .checklist-desc {
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 15px;
       max-width: 620px;
       line-height: 1.7;
       margin-top: 12px;
@@ -831,7 +833,7 @@
 
     .problem-text {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.65;
       color: var(--text-muted);
     }
@@ -839,7 +841,7 @@
     .hero-solution {
       padding: 18px 20px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.65;
       color: var(--text);
       font-weight: 500;
@@ -853,6 +855,33 @@
         border-right: none;
         border-bottom: 1px solid var(--border);
       }
+    }
+
+    /* ── SCROLL PROMPT ───────────────────────────────────── */
+    .scroll-prompt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 32px;
+      cursor: pointer;
+      transition: color 0.15s;
+      text-decoration: none;
+    }
+
+    .scroll-prompt:hover {
+      color: var(--accent);
+    }
+
+    .scroll-prompt svg {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
     }
   </style>
 </head>
@@ -915,6 +944,12 @@
         </svg>
       </a>
     </div>
+    <a href="#checklist" class="scroll-prompt">
+      <span>Download the free RWA compliance checklist</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num"><span>197</span></div>
