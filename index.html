@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settlement Layer Advisory: Licensed Compliance for Tokenized Asset Protocols</title>
-  <meta name="description" content="Licensed securities compliance and proprietary regulatory field measurement for tokenized asset protocols. Series 7, Series 66, Eigenstate Research.">
+  <meta name="description" content="Licensed securities compliance and proprietary regulatory field measurement for tokenized asset protocols. Eigenstate Research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -44,23 +44,18 @@
     section { padding: 96px 0; }
 
     .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
     }
 
     h2.section-title {
       font-size: clamp(26px, 4vw, 38px);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--white);
-      max-width: 640px;
+      font-weight: 700; line-height: 1.2;
+      color: var(--white); max-width: 640px;
     }
 
-    /* ── SITE WATERMARK ──────────────────────────────────── */
+    /* ── WATERMARK ───────────────────────────────────────────── */
     .site-watermark {
       position: fixed; top: 50%; left: 50%;
       transform: translate(-50%,-50%) rotate(-45deg);
@@ -72,7 +67,7 @@
     }
     header, section, footer, .mobile-cta-bar { position: relative; z-index: 1; }
 
-    /* ── HEADER ──────────────────────────────────────────── */
+    /* ── HEADER ──────────────────────────────────────────────── */
     header {
       position: sticky; top: 0; z-index: 200;
       background: rgba(255,255,255,0.97);
@@ -86,7 +81,7 @@
     .logo {
       display: flex; align-items: center;
       font-size: 15px; font-weight: 600;
-      color: var(--white); letter-spacing: -0.01em; gap: 0;
+      color: var(--white); letter-spacing: -0.01em;
     }
     .logo span { color: var(--accent); }
     .logo-mark { width: 28px; height: 28px; margin-right: 10px; display: block; }
@@ -102,18 +97,8 @@
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; }
 
-    /* ── HERO ────────────────────────────────────────────── */
-    .hero {
-      padding: 80px 0 80px;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 64px;
-      align-items: start;
-    }
+    /* ── HERO (single column) ────────────────────────────────── */
+    .hero { padding: 80px 0; border-bottom: 1px solid var(--border); }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
@@ -124,10 +109,11 @@
       width: 20px; height: 1px; background: var(--accent);
     }
     h1 {
-      font-size: clamp(28px, 4.5vw, 48px);
-      font-weight: 700; line-height: 1.12;
+      font-size: clamp(30px, 5vw, 54px);
+      font-weight: 700; line-height: 1.1;
       letter-spacing: -0.02em;
-      color: var(--white); margin-bottom: 32px;
+      color: var(--white); margin-bottom: 36px;
+      max-width: 780px;
     }
     h1 em { font-style: normal; color: var(--accent); }
 
@@ -136,11 +122,10 @@
       gap: 1px; background: var(--border);
       border: 1px solid var(--border);
       border-radius: 6px; overflow: hidden;
-      margin-bottom: 36px;
+      margin-bottom: 36px; max-width: 800px;
     }
     .hero-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1fr;
       background: var(--bg-card);
     }
     .hero-problem {
@@ -158,7 +143,7 @@
       line-height: 1.6; color: var(--text); font-weight: 500;
     }
 
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 
     .btn-primary {
       display: inline-block; background: var(--accent);
@@ -189,41 +174,9 @@
       animation: pulse 2.5s infinite;
     }
 
-    /* ── FORM PANEL (hero right) ─────────────────────────── */
-    .form-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-2);
-      border-radius: 8px; overflow: hidden;
-    }
-    .form-panel-header {
-      background: var(--bg-2);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .form-panel-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px; font-weight: 600; color: var(--white);
-    }
-    .form-panel-tag {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: #0a0a0f; background: var(--accent);
-      padding: 3px 8px; border-radius: 3px;
-    }
-    .form-panel-body { padding: 20px 24px; }
-    .form-panel-body iframe { display: block; }
-
-    /* ── HERO STATS STRIP ────────────────────────────────── */
-    .stats-strip {
-      background: var(--bg-2);
-      border-bottom: 1px solid var(--border);
-      padding: 28px 0;
-    }
-    .stats-strip-inner {
-      display: flex; gap: 48px; flex-wrap: wrap; align-items: center;
-    }
-    .stat-item {}
+    /* ── STATS STRIP ─────────────────────────────────────────── */
+    .stats-strip { background: var(--bg-2); border-bottom: 1px solid var(--border); padding: 28px 0; }
+    .stats-strip-inner { display: flex; gap: 48px; flex-wrap: wrap; align-items: center; }
     .stat-num {
       font-family: 'Inter', sans-serif;
       font-size: 26px; font-weight: 700;
@@ -233,17 +186,11 @@
     .stat-num span { color: var(--accent); }
     .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
 
-    /* ── GAP SECTION ─────────────────────────────────────── */
-    .gap-section {
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
+    /* ── GAP SECTION ─────────────────────────────────────────── */
+    .gap-section { background: var(--bg); border-bottom: 1px solid var(--border); }
     .gap-header { margin-bottom: 56px; }
     .gap-header .section-title { max-width: 520px; }
-    .gap-header p {
-      font-size: 15px; color: var(--text-muted);
-      line-height: 1.75; max-width: 580px; margin-top: 16px;
-    }
+    .gap-header p { font-size: 15px; color: var(--text-muted); line-height: 1.75; max-width: 580px; margin-top: 16px; }
     .gap-cards {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1px; background: var(--border);
@@ -254,24 +201,19 @@
       font-family: 'Inter', sans-serif;
       font-size: 48px; font-weight: 800;
       color: var(--accent); opacity: 0.2;
-      line-height: 1; margin-bottom: 16px;
-      letter-spacing: -0.03em;
+      line-height: 1; margin-bottom: 16px; letter-spacing: -0.03em;
     }
-    .gap-card h3 {
-      font-size: 17px; font-weight: 700;
-      color: var(--white); margin-bottom: 12px; line-height: 1.3;
-    }
+    .gap-card h3 { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.3; }
     .gap-card p { font-size: 14px; line-height: 1.75; color: var(--text-muted); }
 
-    /* ── SERVICES ────────────────────────────────────────── */
+    /* ── SERVICES ────────────────────────────────────────────── */
     .services { background: var(--bg-2); border-bottom: 1px solid var(--border); }
     .services-header { margin-bottom: 56px; }
     .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
     .service-card {
       background: var(--bg-card); border: 1px solid var(--border);
       border-radius: 8px; padding: 36px 32px;
-      display: flex; flex-direction: column;
-      transition: border-color 0.2s;
+      display: flex; flex-direction: column; transition: border-color 0.2s;
     }
     .service-card:hover { border-color: rgba(232,147,10,0.25); }
     .service-tag {
@@ -281,66 +223,39 @@
       display: inline-block; padding: 4px 10px; border-radius: 3px;
       margin-bottom: 22px; width: fit-content;
     }
-    .service-card h3 {
-      font-size: 19px; font-weight: 700; color: var(--white);
-      margin-bottom: 14px; letter-spacing: -0.01em;
-    }
+    .service-card h3 { font-size: 19px; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em; }
     .service-card p { font-size: 14px; line-height: 1.75; color: var(--text-muted); flex: 1; }
-    .service-for {
-      font-size: 12px; font-weight: 500; color: var(--text-muted);
-      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
-    }
+    .service-for { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
     .service-price { font-size: 15px; font-weight: 700; color: var(--accent); margin-top: 10px; }
 
-    /* ── COMPARISON TABLE ────────────────────────────────── */
+    /* ── COMPARISON TABLE ────────────────────────────────────── */
     .comparison { background: var(--bg); border-bottom: 1px solid var(--border); }
     .comparison-header { margin-bottom: 48px; }
     .comparison-table-wrap { overflow-x: auto; }
-    .comparison-table {
-      width: 100%; border-collapse: collapse;
-      font-size: 14px;
-    }
-    .comparison-table thead tr {
-      border-bottom: 1px solid var(--border);
-    }
+    .comparison-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .comparison-table thead tr { border-bottom: 1px solid var(--border); }
     .comparison-table th {
       padding: 14px 24px; text-align: left;
       font-family: 'Inter', sans-serif;
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
     }
     .comparison-table th:first-child { color: var(--text-muted); width: 28%; }
     .comparison-table th.col-them { color: var(--text-muted); }
-    .comparison-table th.col-us {
-      color: #0a0a0f; background: var(--accent);
-      border-radius: 4px 4px 0 0;
-    }
-    .comparison-table td {
-      padding: 16px 24px; border-bottom: 1px solid var(--border);
-      vertical-align: top; line-height: 1.6;
-    }
-    .comparison-table td:first-child {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600; color: var(--text); font-size: 13px;
-    }
+    .comparison-table th.col-us { color: #0a0a0f; background: var(--accent); border-radius: 4px 4px 0 0; }
+    .comparison-table td { padding: 16px 24px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+    .comparison-table td:first-child { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--text); font-size: 13px; }
     .comparison-table td.col-them { color: var(--text-muted); }
     .comparison-table td.col-us {
       color: var(--white); background: rgba(232,147,10,0.04);
       border-left: 1px solid rgba(232,147,10,0.15);
       border-right: 1px solid rgba(232,147,10,0.15);
     }
-    .comparison-table tr:last-child td.col-us {
-      border-bottom: 1px solid rgba(232,147,10,0.15);
-      border-radius: 0 0 4px 4px;
-    }
+    .comparison-table tr:last-child td.col-us { border-bottom: 1px solid rgba(232,147,10,0.15); border-radius: 0 0 4px 4px; }
     .check { color: var(--accent); font-weight: 700; margin-right: 6px; }
     .cross { color: #e05252; font-weight: 700; margin-right: 6px; }
 
-    /* ── EIGENSTATE ──────────────────────────────────────── */
-    .eigenstate {
-      background: var(--bg-2); border-bottom: 1px solid var(--border);
-      border-left: 4px solid rgba(232,147,10,0.4);
-    }
+    /* ── EIGENSTATE ──────────────────────────────────────────── */
+    .eigenstate { background: var(--bg-2); border-bottom: 1px solid var(--border); border-left: 4px solid rgba(232,147,10,0.4); }
     .eigenstate-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
     .eigenstate-mark { width: 48px; height: 48px; display: block; margin-bottom: 16px; }
     .eigenstate-text p { font-size: 14px; line-height: 1.8; color: var(--text-muted); margin-top: 20px; }
@@ -348,70 +263,44 @@
     .eigenstate-link {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 13px; font-weight: 600; color: var(--accent);
-      margin-top: 24px; transition: gap 0.15s;
-      font-family: 'Inter', sans-serif;
+      margin-top: 24px; transition: gap 0.15s; font-family: 'Inter', sans-serif;
     }
     .eigenstate-link:hover { gap: 12px; }
 
-    /* ── SIGNAL PANEL (shared) ───────────────────────────── */
-    .signal-panel {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden;
-    }
-    .signal-panel-header {
-      background: var(--bg-2); border-bottom: 1px solid var(--border);
-      padding: 14px 20px; display: flex; align-items: center; gap: 10px;
-    }
-    .signal-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #4caf50; box-shadow: 0 0 6px rgba(76,175,80,0.5);
-      animation: pulse 2.5s infinite; flex-shrink: 0;
-    }
+    /* ── SIGNAL PANEL ────────────────────────────────────────── */
+    .signal-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .signal-panel-header { background: var(--bg-2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+    .signal-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; box-shadow: 0 0 6px rgba(76,175,80,0.5); animation: pulse 2.5s infinite; flex-shrink: 0; }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-    .signal-panel-title {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--text-muted);
-    }
+    .signal-panel-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
     .signal-rows { padding: 8px 0; }
-    .signal-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: 13px;
-    }
+    .signal-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: 13px; }
     .signal-row:last-child { border-bottom: none; }
     .signal-entity { font-weight: 500; color: var(--text); }
     .signal-phi { font-family: 'SF Mono','Fira Code',monospace; font-size: 12px; }
-    .level-critical { color: #e05252; }
     .level-high     { color: #e08c52; }
     .level-elevated { color: var(--accent); }
     .level-stable   { color: #52a882; }
     .signal-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 3px; }
-    .badge-critical { background: rgba(224,82,82,0.12); color: #e05252; }
     .badge-high     { background: rgba(224,140,82,0.12); color: #e08c52; }
     .badge-elevated { background: rgba(232,147,10,0.12); color: var(--accent); }
     .badge-stable   { background: rgba(82,168,130,0.12); color: #52a882; }
-    .signal-chain {
-      padding: 12px 20px; background: rgba(232,147,10,0.04);
-      border-top: 1px solid var(--border); font-size: 11px;
-      color: var(--text-muted); font-family: 'SF Mono','Fira Code',monospace;
-    }
+    .signal-chain { padding: 12px 20px; background: rgba(232,147,10,0.04); border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); font-family: 'SF Mono','Fira Code',monospace; }
 
-    /* ── CHECKLIST SECTION ───────────────────────────────── */
+    /* ── CHECKLIST SECTION ───────────────────────────────────── */
     .checklist-section { background: var(--bg); border-bottom: 1px solid var(--border); padding: 80px 0; }
-    .checklist-desc {
-      color: var(--text-muted); font-size: 14px; max-width: 600px;
-      line-height: 1.75; margin-top: 12px; margin-bottom: 32px;
-    }
+    .checklist-desc { color: var(--text-muted); font-size: 14px; max-width: 600px; line-height: 1.75; margin-top: 12px; margin-bottom: 32px; }
     .pdf-embed-wrapper { border: 1px solid var(--border-2); border-radius: 6px; overflow: hidden; background: var(--bg-card); }
     .pdf-embed { width: 100%; height: 640px; border: none; display: block; }
 
-    /* ── SIGNALS SECTION (standalone) ────────────────────── */
+    /* ── SIGNALS SECTION ─────────────────────────────────────── */
     .signals-section { background: var(--bg-2); border-bottom: 1px solid var(--border); }
     .signals-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 72px; align-items: start; }
     .signals-left h2 { max-width: 320px; }
     .signals-left p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-top: 16px; max-width: 320px; }
     .signals-left .eigenstate-link { margin-top: 20px; }
 
-    /* ── FAQ ─────────────────────────────────────────────── */
+    /* ── FAQ ─────────────────────────────────────────────────── */
     .faq-section { background: var(--bg); border-bottom: 1px solid var(--border); }
     .faq-header { margin-bottom: 48px; }
     .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
@@ -420,62 +309,63 @@
       width: 100%; display: flex; justify-content: space-between; align-items: center;
       padding: 22px 28px; cursor: pointer; border: none; background: none;
       text-align: left; font-family: 'Inter', sans-serif;
-      font-size: 15px; font-weight: 600; color: var(--white);
-      transition: color 0.15s;
+      font-size: 15px; font-weight: 600; color: var(--white); transition: color 0.15s;
     }
     .faq-q:hover { color: var(--accent); }
     .faq-q svg { flex-shrink: 0; margin-left: 16px; transition: transform 0.2s; color: var(--text-muted); }
     .faq-item.open .faq-q svg { transform: rotate(45deg); color: var(--accent); }
-    .faq-a {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.25s ease, padding 0.2s;
-      padding: 0 28px; font-size: 14px; line-height: 1.8; color: var(--text-muted);
-    }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.2s; padding: 0 28px; font-size: 14px; line-height: 1.8; color: var(--text-muted); }
     .faq-item.open .faq-a { max-height: 400px; padding: 0 28px 24px; }
     .faq-a a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
-    /* ── CTA SECTION ─────────────────────────────────────── */
-    .cta-section { background: var(--bg-2); border-bottom: 1px solid var(--border); }
-    .cta-inner {
-      display: grid; grid-template-columns: 1fr 400px;
-      gap: 64px; align-items: start;
+    /* ── GET STARTED SECTION ─────────────────────────────────── */
+    .get-started-section { background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .get-started-inner { display: grid; grid-template-columns: 1fr 480px; gap: 80px; align-items: start; }
+    .get-started-left h2 { max-width: 440px; }
+    .get-started-left p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-top: 20px; max-width: 420px; }
+    .credential-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; }
+    .credential-pill {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid rgba(232,147,10,0.3);
+      padding: 6px 14px; border-radius: 100px; background: var(--accent-bg);
     }
-    .cta-left h2 { max-width: 480px; }
-    .cta-left p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-top: 20px; max-width: 440px; }
-    .cta-form-panel { background: var(--bg-card); border: 1px solid var(--border-2); border-radius: 8px; overflow: hidden; }
+    .scarcity-text { font-size: 12px; color: var(--accent); font-weight: 600; margin-top: 16px; }
+    .form-panel { background: var(--bg-card); border: 1px solid var(--border-2); border-radius: 8px; overflow: hidden; }
+    .form-panel-header {
+      background: var(--bg-2); border-bottom: 1px solid var(--border);
+      padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .form-panel-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--white); }
+    .form-panel-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #0a0a0f; background: var(--accent); padding: 3px 8px; border-radius: 3px; }
+    .form-panel-body { padding: 20px 24px; }
+    .form-panel-body iframe { display: block; }
 
-    /* ── FOOTER ──────────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────────────── */
     footer { background: var(--bg); border-top: 1px solid var(--border); padding: 48px 0; }
     .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; flex-wrap: wrap; }
     .footer-brand .logo { font-size: 14px; margin-bottom: 10px; }
     .footer-powered { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
     .footer-disclaimer { font-size: 11px; color: var(--text-muted); max-width: 420px; line-height: 1.75; }
     .footer-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-    .footer-links a {
-      font-size: 13px; color: var(--text-muted); transition: color 0.15s;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
+    .footer-links a { font-size: 13px; color: var(--text-muted); transition: color 0.15s; display: inline-flex; align-items: center; gap: 6px; }
     .footer-links a:hover { color: var(--accent); }
 
-    /* ── MOBILE STICKY BAR ───────────────────────────────── */
+    /* ── MOBILE STICKY BAR ───────────────────────────────────── */
     .mobile-cta-bar {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
       background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
       border-top: 1px solid var(--border); padding: 12px 24px;
-      align-items: center; justify-content: space-between; gap: 16px;
+      justify-content: center;
     }
-    .mobile-cta-bar p { font-size: 12px; color: var(--text-muted); flex: 1; }
-    .mobile-cta-bar .btn-primary { white-space: nowrap; font-size: 13px; padding: 10px 20px; }
+    .mobile-cta-bar .btn-primary { width: 100%; text-align: center; font-size: 14px; padding: 13px 26px; }
 
-    /* ── DIVIDER ─────────────────────────────────────────── */
+    /* ── DIVIDER ─────────────────────────────────────────────── */
     .divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 24px; }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 960px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .form-panel { max-width: 540px; }
-      .cta-inner { grid-template-columns: 1fr; }
-      .cta-form-panel { max-width: 540px; }
+      .get-started-inner { grid-template-columns: 1fr; }
       .signals-inner { grid-template-columns: 1fr; }
     }
 
@@ -511,7 +401,7 @@
 
 <div class="site-watermark" aria-hidden="true">SETTLEMENT LAYER ADVISORY</div>
 
-<!-- ── HEADER ────────────────────────────────────────────── -->
+<!-- ── HEADER ────────────────────────────────────────────────── -->
 <header>
   <div class="container">
     <div class="header-inner">
@@ -525,7 +415,7 @@
         <a href="#eigenstate">Research</a>
         <a href="#checklist">Checklist</a>
         <a href="#faq">FAQ</a>
-        <a href="https://tally.so/r/0QjQgQ" class="nav-cta">Get Started</a>
+        <a href="#get-started" class="nav-cta">Get Started</a>
       </nav>
       <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -534,73 +424,50 @@
   </div>
 </header>
 
-<!-- ── HERO ──────────────────────────────────────────────── -->
+<!-- ── HERO (single column, full width) ──────────────────────── -->
 <section class="hero">
   <div class="container">
-    <div class="hero-inner">
+    <div class="hero-eyebrow">Where Regulatory Intelligence Meets Licensed Compliance</div>
+    <h1>The Compliance Layer the Tokenized Asset Market <em>Is Missing</em></h1>
 
-      <!-- Left column -->
-      <div class="hero-left">
-        <div class="hero-eyebrow">Where Regulatory Intelligence Meets Licensed Compliance</div>
-        <h1>The Compliance Layer the Tokenized Asset Market <em>Is Missing</em></h1>
-
-        <div class="hero-rows">
-          <div class="hero-row">
-            <div class="hero-problem">
-              <span class="problem-num">01</span>
-              <span class="problem-text">You cannot legally onboard US investors without licensed securities verification.</span>
-            </div>
-            <div class="hero-solution">Licensed Series 7 and Series 66 professional on every verification. Rule 506(c) compliant.</div>
-          </div>
-          <div class="hero-row">
-            <div class="hero-problem">
-              <span class="problem-num">02</span>
-              <span class="problem-text">Your offering structure has not been reviewed against post-January 2026 SEC guidance on tokenized securities.</span>
-            </div>
-            <div class="hero-solution">We audit your full structure and close compliance gaps before you go to market.</div>
-          </div>
-          <div class="hero-row">
-            <div class="hero-problem">
-              <span class="problem-num">03</span>
-              <span class="problem-text">You are reading headlines. Your competitors are reading the field before headlines form.</span>
-            </div>
-            <div class="hero-solution">Eigenstate Research measures regulatory pressure before it becomes public.</div>
-          </div>
+    <div class="hero-rows">
+      <div class="hero-row">
+        <div class="hero-problem">
+          <span class="problem-num">01</span>
+          <span class="problem-text">You cannot legally onboard US investors without licensed securities verification.</span>
         </div>
-
-        <div class="hero-actions">
-          <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
-          <a href="#eigenstate" class="btn-ghost">
-            How field measurement works
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <div class="hero-trust">48-hour response on every intake. 197 entities tracked. Base mainnet proof.</div>
+        <div class="hero-solution">Licensed professionals on every verification. Rule 506(c) compliant.</div>
       </div>
-
-      <!-- Right column: Tally form -->
-      <div class="hero-right">
-        <div class="form-panel">
-          <div class="form-panel-header">
-            <span class="form-panel-title">Request a Briefing</span>
-            <span class="form-panel-tag">48 hr response</span>
-          </div>
-          <div class="form-panel-body">
-            <iframe data-tally-src="https://tally.so/embed/0QjQgQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              loading="lazy" width="100%" height="420" frameborder="0"
-              marginheight="0" marginwidth="0" title="Request a Briefing">
-            </iframe>
-          </div>
+      <div class="hero-row">
+        <div class="hero-problem">
+          <span class="problem-num">02</span>
+          <span class="problem-text">Your offering structure has not been reviewed against post-January 2026 SEC guidance on tokenized securities.</span>
         </div>
+        <div class="hero-solution">Pre-launch structure review against current SEC guidance.</div>
       </div>
-
+      <div class="hero-row">
+        <div class="hero-problem">
+          <span class="problem-num">03</span>
+          <span class="problem-text">You are reading headlines. Your competitors are reading the field before headlines form.</span>
+        </div>
+        <div class="hero-solution">Field measurement before headlines. On-chain timestamped.</div>
+      </div>
     </div>
+
+    <div class="hero-actions">
+      <a href="#get-started" class="btn-primary">Request a Briefing</a>
+      <a href="#eigenstate" class="btn-ghost">
+        How field measurement works
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-trust">48-hour response on every intake. 197 entities tracked. Base mainnet proof.</div>
   </div>
 </section>
 
-<!-- ── STATS STRIP ────────────────────────────────────────── -->
+<!-- ── STATS STRIP ────────────────────────────────────────────── -->
 <div class="stats-strip">
   <div class="container">
     <div class="stats-strip-inner">
@@ -617,14 +484,14 @@
         <div class="stat-label">Response time on every intake submission</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">Series <span>7 / 66</span></div>
-        <div class="stat-label">Licensed professionals on every verification</div>
+        <div class="stat-num"><span>Licensed</span></div>
+        <div class="stat-label">Professionals on every investor verification</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── GAP SECTION ────────────────────────────────────────── -->
+<!-- ── GAP SECTION ────────────────────────────────────────────── -->
 <section class="gap-section" id="gap">
   <div class="container">
     <div class="gap-header">
@@ -636,12 +503,12 @@
       <div class="gap-card">
         <div class="gap-card-num">01</div>
         <h3>You have experimented with compliance. Your investor onboarding hasn't changed.</h3>
-        <p>Legal memos didn't transform your verification process. Self-certification doesn't satisfy Rule 506(c). KYC tools don't replace licensed securities professionals. That's not a technology problem — it's a licensing problem.</p>
+        <p>Legal memos didn't transform your verification process. Self-certification doesn't satisfy Rule 506(c). KYC tools don't replace licensed professionals. That's not a technology problem — it's a licensing problem.</p>
       </div>
       <div class="gap-card">
         <div class="gap-card-num">02</div>
         <h3>"We reviewed the January 2026 statement" is not a sufficient answer anymore.</h3>
-        <p>96% of protocols cite regulatory uncertainty as their critical go-to-market risk. Only a fraction have had their offering structure reviewed by a licensed professional against current SEC guidance. The protocols that move first with a proper structure define what survives.</p>
+        <p>96% of protocols cite regulatory uncertainty as their critical go-to-market risk. Only a fraction have had their offering structure reviewed by a licensed professional against current SEC guidance. The protocols that move first define what survives.</p>
       </div>
       <div class="gap-card">
         <div class="gap-card-num">03</div>
@@ -652,7 +519,7 @@
   </div>
 </section>
 
-<!-- ── SERVICES ───────────────────────────────────────────── -->
+<!-- ── SERVICES ───────────────────────────────────────────────── -->
 <section class="services" id="services">
   <div class="container">
     <div class="services-header">
@@ -664,7 +531,7 @@
       <div class="service-card">
         <div class="service-tag">Investor Onboarding</div>
         <h3>Accredited Investor Verification</h3>
-        <p>Accredited investor verification, KYC/AML documentation review, suitability assessment, and offering eligibility confirmation. Every verification performed by a licensed securities professional. Self-certification and engineer-run processes do not satisfy Rule 506(c) reasonable steps requirements.</p>
+        <p>Accredited investor verification, KYC/AML documentation review, suitability assessment, and offering eligibility confirmation. Every verification performed by a licensed professional. Self-certification and engineer-run processes do not satisfy Rule 506(c) reasonable steps requirements.</p>
         <div class="service-for">For protocols running Reg D or Reg S offerings.</div>
         <div class="service-price">$200&ndash;$500 per investor verified</div>
       </div>
@@ -689,7 +556,7 @@
   </div>
 </section>
 
-<!-- ── COMPARISON ─────────────────────────────────────────── -->
+<!-- ── COMPARISON ─────────────────────────────────────────────── -->
 <section class="comparison" id="comparison">
   <div class="container">
     <div class="comparison-header">
@@ -709,7 +576,7 @@
           <tr>
             <td>Investor verification</td>
             <td class="col-them"><span class="cross">✕</span>Engineer-run or self-certification. Does not satisfy Rule 506(c) reasonable steps requirement.</td>
-            <td class="col-us"><span class="check">✓</span>Licensed Series 7 and Series 66 professional on every verification. Rule 506(c) compliant.</td>
+            <td class="col-us"><span class="check">✓</span>Licensed professional on every verification. Rule 506(c) compliant.</td>
           </tr>
           <tr>
             <td>Offering structure review</td>
@@ -737,7 +604,7 @@
   </div>
 </section>
 
-<!-- ── EIGENSTATE ─────────────────────────────────────────── -->
+<!-- ── EIGENSTATE ─────────────────────────────────────────────── -->
 <section class="eigenstate" id="eigenstate">
   <div class="container">
     <div class="eigenstate-inner">
@@ -801,7 +668,7 @@
   </div>
 </section>
 
-<!-- ── CHECKLIST ──────────────────────────────────────────── -->
+<!-- ── CHECKLIST ──────────────────────────────────────────────── -->
 <section class="checklist-section" id="checklist">
   <div class="container">
     <div class="section-label">Free Resource</div>
@@ -817,7 +684,7 @@
   </div>
 </section>
 
-<!-- ── SIGNAL READINGS ────────────────────────────────────── -->
+<!-- ── SIGNAL READINGS ────────────────────────────────────────── -->
 <section class="signals-section" id="signals">
   <div class="container">
     <div class="signals-inner">
@@ -894,7 +761,7 @@
   </div>
 </section>
 
-<!-- ── FAQ ────────────────────────────────────────────────── -->
+<!-- ── FAQ ────────────────────────────────────────────────────── -->
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="faq-header">
@@ -908,7 +775,7 @@
           Do I need a licensed professional for Reg D 506(c) investor verification?
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
-        <div class="faq-a">Yes. Rule 506(c) requires that you take "reasonable steps" to verify accredited investor status. The SEC has been explicit that self-certification — where the investor simply checks a box — does not satisfy this standard. Verification must be performed by a licensed securities professional (Series 7 or Series 66) or an attorney, CPA, or registered investment adviser. Engineers and operations teams do not qualify regardless of what process they follow.</div>
+        <div class="faq-a">Yes. Rule 506(c) requires that you take "reasonable steps" to verify accredited investor status. The SEC has been explicit that self-certification — where the investor simply checks a box — does not satisfy this standard. Verification must be performed by a licensed professional or an attorney, CPA, or registered investment adviser. Engineers and operations teams do not qualify regardless of what process they follow.</div>
       </div>
 
       <div class="faq-item">
@@ -924,7 +791,7 @@
           What is Eigenstate Research and how does the field measurement work?
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
-        <div class="faq-a">Eigenstate Research is the regulatory intelligence engine that powers Settlement Layer Advisory's monitoring service. It measures regulatory pressure (Φ_S) across 197 entities including regulators, issuers, infrastructure providers, and jurisdictions. Each reading is calculated from primary source signals: filings, statements, enforcement actions, and structural changes in the settlement topology. Every observation is hash-chained and committed to Base mainnet before publication, creating an auditable timestamped record. The signal typically leads public headlines by 24&ndash;72 hours. You can review published methodology at <a href="https://kaydeep0.github.io/eigenstate-research" target="_blank" rel="noopener">kaydeep0.github.io/eigenstate-research</a>.</div>
+        <div class="faq-a">Eigenstate Research is the regulatory intelligence engine that powers Settlement Layer Advisory's monitoring service. It measures regulatory pressure (Φ_S) across 197 entities including regulators, issuers, infrastructure providers, and jurisdictions. Every observation is hash-chained and committed to Base mainnet before publication, creating an auditable timestamped record. The signal typically leads public headlines by 24&ndash;72 hours. Review published methodology at <a href="https://kaydeep0.github.io/eigenstate-research" target="_blank" rel="noopener">kaydeep0.github.io/eigenstate-research</a>.</div>
       </div>
 
       <div class="faq-item">
@@ -940,30 +807,51 @@
           What does the monthly field briefing include?
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
-        <div class="faq-a">Each monthly briefing includes: current Φ_S readings across the full 197-entity topology, identification of entities where pressure is increasing month-over-month, a written analysis of what the pressure changes mean for protocols in the tokenized securities space, and the on-chain transaction hash proving the observation was committed before publication. Briefings are delivered as a PDF report with the on-chain proof appended. The $500/month rate covers one protocol. Multi-protocol arrangements are available on request.</div>
+        <div class="faq-a">Each monthly briefing includes: current Φ_S readings across the full 197-entity topology, identification of entities where pressure is increasing month-over-month, a written analysis of what the pressure changes mean for protocols in the tokenized securities space, and the on-chain transaction hash proving the observation was committed before publication. Briefings are delivered as a PDF report with on-chain proof appended. The $500/month rate covers one protocol. Multi-protocol arrangements are available on request.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ── FINAL CTA ───────────────────────────────────────────── -->
-<section class="cta-section" id="contact" style="padding:96px 0;">
+<!-- ── GET STARTED ────────────────────────────────────────────── -->
+<section class="get-started-section" id="get-started">
   <div class="container">
-    <div class="cta-left">
-      <div class="divider"></div>
-      <div class="section-label">Get Started</div>
-      <h2 class="section-title">Every submission reviewed. Response within 48 hours.</h2>
-      <p>Tell us about your protocol and where you are in the launch process. We will review your situation and respond with a specific recommendation — not a sales call.</p>
-      <p style="margin-top:12px;">If your offering is live and you have not had a licensed professional verify investor accreditation, contact us today. This is the most time-sensitive gap in the checklist.</p>
-      <div style="margin-top:36px;">
-        <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
+    <div class="get-started-inner">
+
+      <div class="get-started-left">
+        <div class="divider"></div>
+        <div class="section-label">Get Started</div>
+        <h2 class="section-title">Every submission reviewed. Response within 48 hours.</h2>
+        <p>Tell us about your protocol and where you are in the launch process. We review every submission and respond with a specific recommendation.</p>
+        <div class="credential-pills">
+          <span class="credential-pill">Licensed Professionals</span>
+          <span class="credential-pill">SEC Guidance Current</span>
+          <span class="credential-pill">48hr Response</span>
+        </div>
+        <div class="scarcity-text">3 engagement slots available this month</div>
       </div>
+
+      <div>
+        <div class="form-panel">
+          <div class="form-panel-header">
+            <span class="form-panel-title">Request a Briefing</span>
+            <span class="form-panel-tag">48 hr response</span>
+          </div>
+          <div class="form-panel-body">
+            <iframe data-tally-src="https://tally.so/embed/0QjQgQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              loading="lazy" width="100%" height="500" frameborder="0"
+              marginheight="0" marginwidth="0" title="Request a Briefing">
+            </iframe>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -974,7 +862,7 @@
         </div>
         <div class="footer-powered">Powered by Eigenstate Research</div>
         <div class="footer-disclaimer">
-          Securities services provided through licensed professionals (Series 7, Series 66, active). Nothing on this site constitutes legal advice. Regulatory intelligence reports are research only and do not constitute investment advice.
+          Securities services provided through licensed professionals. Nothing on this site constitutes legal advice. Regulatory intelligence reports are research only and do not constitute investment advice.
         </div>
       </div>
       <div class="footer-links">
@@ -987,20 +875,18 @@
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="#checklist">Download Checklist</a>
-        <a href="https://tally.so/r/0QjQgQ">Get Started</a>
+        <a href="#get-started">Get Started</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ── MOBILE STICKY BAR ──────────────────────────────────── -->
+<!-- ── MOBILE STICKY BAR ──────────────────────────────────────── -->
 <div class="mobile-cta-bar">
-  <p>Licensed compliance for tokenized protocols.</p>
-  <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
+  <a href="#get-started" class="btn-primary">Request Briefing</a>
 </div>
 
 <script>
-  // Nav toggle
   function toggleNav() {
     document.getElementById('main-nav').classList.toggle('open');
   }
@@ -1012,7 +898,6 @@
     }
   });
 
-  // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(function(btn) {
     btn.addEventListener('click', function() {
       const item   = this.closest('.faq-item');
@@ -1022,7 +907,6 @@
     });
   });
 
-  // Tally embed loader
   var d = document, w = "https://tally.so/widgets/embed.js",
   v = function() {
     if (typeof Tally !== 'undefined') {
