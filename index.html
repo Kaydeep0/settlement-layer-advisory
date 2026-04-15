@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settlement Layer Advisory — Where Regulatory Intelligence Meets Licensed Compliance</title>
+  <meta name="description" content="Licensed securities compliance and proprietary regulatory field measurement for tokenized asset protocols. Series 7, Series 66, Eigenstate Research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #0a0a0f;
+      --bg-2:      #0f0f1a;
+      --bg-card:   #111120;
+      --border:    #1e1e30;
+      --border-2:  #2a2a40;
+      --text:      #e8e8e8;
+      --text-muted:#8a8aa0;
+      --accent:    #c9a84c;
+      --accent-dim:#a8862d;
+      --accent-bg: rgba(201,168,76,0.06);
+      --white:     #ffffff;
+      --max-w:     1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── LAYOUT ─────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    h2.section-title {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--white);
+      max-width: 640px;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent) !important;
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 7px 16px;
+      border-radius: 4px;
+      transition: background 0.15s, border-color 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-bg);
+      border-color: rgba(201,168,76,0.6) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-muted);
+      border-radius: 2px;
+    }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      padding: 120px 0 100px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(32px, 5.5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a0f;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 14px 28px;
+      border-radius: 4px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-primary:hover {
+      background: #d4b05a;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.15s;
+    }
+
+    .btn-ghost:hover { color: var(--text); }
+
+    .btn-ghost svg { transition: transform 0.15s; }
+
+    .btn-ghost:hover svg { transform: translateX(3px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .stat-item {}
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-num span { color: var(--accent); }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ── PROBLEM ────────────────────────────────────────── */
+    .problem {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .problem-header {
+      margin-bottom: 56px;
+    }
+
+    .problem-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .problem-card {
+      background: var(--bg-card);
+      padding: 36px 32px;
+    }
+
+    .problem-card-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .problem-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .problem-card p strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* ── SERVICES ───────────────────────────────────────── */
+    .services {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .services-header {
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(201,168,76,0.25);
+    }
+
+    .service-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid rgba(201,168,76,0.15);
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 3px;
+      margin-bottom: 22px;
+      width: fit-content;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .service-for {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 12px;
+    }
+
+    /* ── CREDENTIALS ────────────────────────────────────── */
+    .credentials {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .credentials-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .credentials-left h2 {
+      max-width: 420px;
+    }
+
+    .credentials-left p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 400px;
+      margin-top: 24px;
+    }
+
+    .credential-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .credential-item {
+      background: var(--bg-card);
+      padding: 22px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .cred-marker {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .cred-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .cred-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
+    /* ── EIGENSTATE ─────────────────────────────────────── */
+    .eigenstate {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eigenstate-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .eigenstate-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-top: 24px;
+    }
+
+    .eigenstate-text p em {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .eigenstate-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 28px;
+      transition: gap 0.15s;
+    }
+
+    .eigenstate-link:hover { gap: 12px; }
+
+    .signal-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .signal-panel-header {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .signal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4caf50;
+      box-shadow: 0 0 6px rgba(76,175,80,0.5);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .signal-panel-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .signal-rows {
+      padding: 8px 0;
+    }
+
+    .signal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .signal-row:last-child { border-bottom: none; }
+
+    .signal-entity {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .signal-phi {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+    }
+
+    .level-critical { color: #e05252; }
+    .level-high     { color: #e08c52; }
+    .level-elevated { color: var(--accent); }
+    .level-stable   { color: #52a882; }
+
+    .signal-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .badge-critical { background: rgba(224,82,82,0.12); color: #e05252; }
+    .badge-high     { background: rgba(224,140,82,0.12); color: #e08c52; }
+    .badge-elevated { background: rgba(201,168,76,0.12); color: var(--accent); }
+    .badge-stable   { background: rgba(82,168,130,0.12); color: #52a882; }
+
+    .signal-chain {
+      padding: 12px 20px;
+      background: rgba(201,168,76,0.04);
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ── CTA SECTION ────────────────────────────────────── */
+    .cta-section {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 20px auto 40px;
+      max-width: 400px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand .logo {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .footer-powered {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ────────────────────────────────────────── */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* ── MOBILE NAV ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 72px 0; }
+
+      .hamburger { display: flex; }
+
+      nav.desktop-nav { display: none; }
+
+      nav.desktop-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 24px;
+        gap: 20px;
+        z-index: 99;
+      }
+
+      .problem-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .credentials-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .eigenstate-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-stats {
+        gap: 32px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 30px; }
+
+      .hero { padding: 80px 0 72px; }
+
+      .btn-primary { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ───────────────────────────────────────────── -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo">Settlement<span> Layer</span> Advisory</div>
+      <nav class="desktop-nav" id="main-nav">
+        <a href="#services">Services</a>
+        <a href="#credentials">About</a>
+        <a href="https://tally.so/r/0QjQgQ" class="nav-cta">Get Started</a>
+      </nav>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Where Regulatory Intelligence Meets Licensed Compliance</div>
+    <h1>The Compliance Layer the Tokenized Asset Market <em>Is Missing</em></h1>
+    <p class="hero-sub">
+      Licensed securities professional with Series 7 and Series 66, private credit analyst, and compliance auditor — combined with proprietary regulatory field measurement across the tokenized settlement layer.
+    </p>
+    <div class="hero-actions">
+      <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
+      <a href="#eigenstate" class="btn-ghost">
+        How the field measurement works
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num"><span>197</span></div>
+        <div class="stat-label">Entities tracked across the settlement layer</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Base <span>mainnet</span></div>
+        <div class="stat-label">Every observation committed on-chain before publication</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>48</span> hrs</div>
+        <div class="stat-label">Response time on every intake submission</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ───────────────────────────────────────────── -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-header">
+      <div class="section-label">The Gap</div>
+      <h2 class="section-title">Most RWA protocols are built by engineers who understand the blockchain side but cannot legally onboard investors.</h2>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card">
+        <div class="problem-card-num">01</div>
+        <p>
+          <strong>You need licensed verification for Reg D and Reg S offerings.</strong>
+          Your engineers cannot do this. Onboarding investors without licensed professional verification creates liability that compounds as your protocol scales.
+        </p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">02</div>
+        <p>
+          <strong>Compliance structure errors before launch cost more than getting it right the first time.</strong>
+          Jurisdictional missteps, missing offering disclosures, and unreviewed transfer restrictions surface after capital is committed — when fixing them is expensive.
+        </p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">03</div>
+        <p>
+          <strong>Regulatory pressure is building across the settlement layer. Most protocols do not know where.</strong>
+          The engine currently reads elevated field pressure on the Federal Reserve, SEC, and entities in the stablecoin reserve topology. Most protocols find out at the headline stage.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────────────── -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">Services</div>
+      <h2 class="section-title">Three Ways We Work Together</h2>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-tag">Investor Onboarding</div>
+        <h3>Accredited Investor Verification</h3>
+        <p>
+          Accredited investor verification, KYC/AML documentation review, suitability assessment, and offering eligibility confirmation. Every verification performed by a licensed securities professional.
+        </p>
+        <div class="service-for">For protocols running Reg D or Reg S offerings.</div>
+        <div class="service-price">$200–$500 per investor verified</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-tag">Compliance Structuring</div>
+        <h3>Pre-Launch Compliance Review</h3>
+        <p>
+          Jurisdictional analysis, regulatory gap assessment, offering document review, settlement layer compliance review, and private credit structure analysis. Delivered before you go to market, when fixing issues is still straightforward.
+        </p>
+        <div class="service-for">For protocols launching tokenized offerings.</div>
+        <div class="service-price">$5,000–$15,000 per engagement</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-tag">Regulatory Intelligence</div>
+        <h3>Monthly Field Briefing</h3>
+        <p>
+          Monthly field measurement report showing where regulatory pressure is building across the tokenized settlement topology. Every observation timestamped and committed to Base mainnet before publication. Powered by Eigenstate Research.
+        </p>
+        <div class="service-for">For protocols monitoring their regulatory environment.</div>
+        <div class="service-price">$500 / month per protocol</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ───────────────────────────────────────── -->
+<section class="credentials" id="credentials">
+  <div class="container">
+    <div class="credentials-layout">
+      <div class="credentials-left">
+        <div class="section-label">Credentials</div>
+        <h2 class="section-title">The Combination That Does Not Exist Anywhere Else</h2>
+        <p>
+          Active securities licenses, private credit expertise, and a live regulatory field measurement system. Most compliance consultants have one of these. Not all three operating together.
+        </p>
+      </div>
+      <div class="credentials-right">
+        <ul class="credential-list">
+          <li class="credential-item">
+            <div class="cred-marker"></div>
+            <div>
+              <div class="cred-title">Series 7 — Active</div>
+              <div class="cred-desc">General Securities Representative license. Required for licensed accredited investor verification and securities suitability assessment.</div>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="cred-marker"></div>
+            <div>
+              <div class="cred-title">Series 66 — Active</div>
+              <div class="cred-desc">Uniform Combined State Law license. Investment adviser representative and securities agent.</div>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="cred-marker"></div>
+            <div>
+              <div class="cred-title">Private Credit Analyst</div>
+              <div class="cred-desc">Structured credit, private lending, and alternative asset analysis experience applied to tokenized credit structures.</div>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="cred-marker"></div>
+            <div>
+              <div class="cred-title">Compliance Auditor</div>
+              <div class="cred-desc">Regulatory review, gap analysis, and audit methodology for financial protocols and offering structures.</div>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="cred-marker"></div>
+            <div>
+              <div class="cred-title">Eigenstate Research</div>
+              <div class="cred-desc">Proprietary regulatory field measurement with on-chain proof of observation timestamps. Methodology publicly available. Every signal committed to Base mainnet before publication.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EIGENSTATE ─────────────────────────────────────────── -->
+<section class="eigenstate" id="eigenstate">
+  <div class="container">
+    <div class="eigenstate-inner">
+      <div class="eigenstate-text">
+        <div class="section-label">Eigenstate Research</div>
+        <h2 class="section-title">Regulatory Intelligence Backed by On-Chain Proof</h2>
+        <p>
+          Eigenstate Research measures regulatory pressure across 197 entities in the tokenized settlement layer continuously. Each observation is hash-chained and committed to Base mainnet before publication. The engine currently tracks entities including the Federal Reserve, SEC, CFTC, OCC, Circle, ONDO, Coinbase, BlackRock, and Fireblocks.
+        </p>
+        <p>
+          <em>This is not a news feed. It is a field measurement system. The signal exists before the headlines do.</em>
+        </p>
+        <a href="https://kaydeep0.github.io/eigenstate-research" class="eigenstate-link" target="_blank" rel="noopener">
+          View methodology
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <div class="signal-panel">
+          <div class="signal-panel-header">
+            <div class="signal-dot"></div>
+            <div class="signal-panel-title">Live Field Readings — Settlement Topology</div>
+          </div>
+          <div class="signal-rows">
+            <div class="signal-row">
+              <span class="signal-entity">Federal Reserve</span>
+              <span class="signal-phi level-high">Φ_S = 4.85</span>
+              <span class="signal-badge badge-high">HIGH</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-entity">SEC</span>
+              <span class="signal-phi level-critical">Φ_S = 1.19</span>
+              <span class="signal-badge badge-elevated">ELEVATED</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-entity">HK Jurisdiction</span>
+              <span class="signal-phi level-elevated">Φ_S = 1.75</span>
+              <span class="signal-badge badge-elevated">ELEVATED</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-entity">Coinbase</span>
+              <span class="signal-phi level-elevated">Φ_S = 0.73</span>
+              <span class="signal-badge badge-elevated">ELEVATED</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-entity">Ondo Finance</span>
+              <span class="signal-phi level-stable">Φ_S = 0.19</span>
+              <span class="signal-badge badge-stable">STABLE</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-entity">Circle</span>
+              <span class="signal-phi level-stable">Φ_S = 0.32</span>
+              <span class="signal-badge badge-stable">STABLE</span>
+            </div>
+          </div>
+          <div class="signal-chain">
+            on-chain: block 44739111 · tx 86d6b597a037831b · Base mainnet
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="divider" style="margin: 0 auto 24px;"></div>
+    <div class="section-label" style="text-align:center;">Get Started</div>
+    <h2 class="section-title" style="margin: 0 auto; text-align: center; max-width: 480px;">Ready to talk?</h2>
+    <p>We review every submission and respond within 48 hours.</p>
+    <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">Settlement<span> Layer</span> Advisory</div>
+        <div class="footer-powered">Powered by Eigenstate Research</div>
+        <div class="footer-disclaimer">
+          Securities services provided through licensed professionals (Series 7, Series 66, active). Nothing on this site constitutes legal advice. Regulatory intelligence reports are research only, not investment advice.
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://kaydeep0.github.io/eigenstate-research" target="_blank" rel="noopener">
+          Eigenstate Research
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://kaydeep0.github.io/eigenstate-research" target="_blank" rel="noopener">
+          Methodology
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://tally.so/r/0QjQgQ">
+          Get Started
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleNav() {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('open');
+  }
+
+  // Close nav on outside click
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('main-nav');
+    const hb = document.getElementById('hamburger');
+    if (!nav.contains(e.target) && !hb.contains(e.target)) {
+      nav.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
