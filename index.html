@@ -883,9 +883,34 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(4px); }
     }
+
+    /* ── WATERMARK ───────────────────────────────────────── */
+    .site-watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 800;
+      color: white;
+      opacity: 0.015;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    header, section, footer {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
+
+<div class="site-watermark" aria-hidden="true">SETTLEMENT LAYER ADVISORY</div>
 
 <!-- ── HEADER ───────────────────────────────────────────── -->
 <header>

@@ -73,12 +73,23 @@ class ChecklistPDF:
                'constitute legal advice.')
         self.c.drawCentredString(W / 2, FOOTER_Y, txt)
 
+    def _watermark(self):
+        self.c.saveState()
+        self.c.setFillColor(WHITE)
+        self.c.setFillAlpha(0.04)
+        self.c.setFont('Helvetica-Bold', 48)
+        self.c.translate(W / 2, H / 2)
+        self.c.rotate(45)
+        self.c.drawCentredString(0, 0, 'SETTLEMENT LAYER ADVISORY')
+        self.c.restoreState()
+
     def new_page(self):
         if self.pg > 0:
             self._footer()
             self.c.showPage()
         self.pg += 1
         self._bg()
+        self._watermark()
         self.y = TOP_START
 
     def need_page(self, pts: float) -> bool:
@@ -155,7 +166,7 @@ class ChecklistPDF:
         needed = 36
         if self.need_page(needed):
             self.new_page()
-        self.y -= 8
+        self.y -= 16
         # Number badge
         badge_w = stringWidth(num, 'Helvetica-Bold', 8) + 14
         self.c.setFillColor(ACCENT)
@@ -185,7 +196,7 @@ class ChecklistPDF:
         """Draw a checkbox row with [ ] in amber and wrapped text in Courier."""
         font       = 'Courier'
         font_size  = 8.5
-        leading    = 13
+        leading    = 18
         box_str    = '[ ]'
         box_w      = stringWidth(box_str, 'Courier-Bold', font_size) + 6
         text_x     = ML + box_w
@@ -209,7 +220,7 @@ class ChecklistPDF:
             self.c.drawString(text_x, self.y, ln)
             self.y -= leading
 
-        self.y -= 5  # inter-item spacing
+        self.y -= 8  # inter-item spacing
 
     def closing_box(self, heading: str, paragraphs: list, final_line: str):
         """Amber-background box for the closing call to action."""
@@ -218,7 +229,7 @@ class ChecklistPDF:
         size_h   = 12
         size_b   = 8.5
         leading  = 13
-        pad      = 16
+        pad      = 20
 
         # Pre-calculate height
         heading_h = 20

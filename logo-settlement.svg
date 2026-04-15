@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Settlement Layer Topology: triangle of outer nodes, amber center node -->
+
+  <!-- Connection lines between outer nodes (triangle edges) -->
+  <line x1="100" y1="52" x2="62"  y2="118" stroke="#e8930a" stroke-width="1" opacity="0.6"/>
+  <line x1="100" y1="52" x2="138" y2="118" stroke="#e8930a" stroke-width="1" opacity="0.6"/>
+  <line x1="62"  y1="118" x2="138" y2="118" stroke="#e8930a" stroke-width="1" opacity="0.6"/>
+
+  <!-- Connection lines from center to outer nodes -->
+  <line x1="100" y1="100" x2="100" y2="52"  stroke="#e8930a" stroke-width="0.75" opacity="0.5"/>
+  <line x1="100" y1="100" x2="62"  y2="118" stroke="#e8930a" stroke-width="0.75" opacity="0.5"/>
+  <line x1="100" y1="100" x2="138" y2="118" stroke="#e8930a" stroke-width="0.75" opacity="0.5"/>
+
+  <!-- Outer node: top -->
+  <circle cx="100" cy="52" r="7" fill="#c8c8d8" opacity="0.75"/>
+  <circle cx="100" cy="52" r="4" fill="#e8e8e8"/>
+
+  <!-- Outer node: bottom-left -->
+  <circle cx="62" cy="118" r="7" fill="#c8c8d8" opacity="0.75"/>
+  <circle cx="62" cy="118" r="4" fill="#e8e8e8"/>
+
+  <!-- Outer node: bottom-right -->
+  <circle cx="138" cy="118" r="7" fill="#c8c8d8" opacity="0.75"/>
+  <circle cx="138" cy="118" r="4" fill="#e8e8e8"/>
+
+  <!-- Center node: amber, larger -->
+  <circle cx="100" cy="100" r="14" fill="#e8930a" opacity="0.2"/>
+  <circle cx="100" cy="100" r="9"  fill="#e8930a"/>
+  <circle cx="100" cy="100" r="4"  fill="#0a0a0f"/>
+</svg>
