@@ -58,15 +58,13 @@ def _wrap(text: str, font: str, size: float, max_w: float) -> list:
 # ── Canvas callbacks ────────────────────────────────────────────────────────────
 def _draw_bg_watermark_footer(canvas, doc):
     """Dark background, diagonal watermark, footer rule and text."""
-    # Background
-    canvas.saveState()
+    # Background — drawn FIRST before any other content
     canvas.setFillColor(BG)
     canvas.rect(0, 0, W, H, fill=1, stroke=0)
-    canvas.restoreState()
 
     # Watermark
     canvas.saveState()
-    canvas.setFillColor(Color(0.9, 0.9, 0.9, alpha=0.03))
+    canvas.setFillColor(Color(0.9, 0.9, 0.9, alpha=0.04))
     canvas.setFont('Helvetica-Bold', 42)
     canvas.translate(306, 396)
     canvas.rotate(45)
