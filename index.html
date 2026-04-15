@@ -12,17 +12,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #0a0a0f;
-      --bg-2:       #0f0f1a;
-      --bg-card:    #111120;
-      --border:     #1e1e30;
-      --border-2:   #2a2a40;
-      --text:       #e8e8e8;
-      --text-muted: #8a8aa0;
+      --bg:         #ffffff;
+      --bg-2:       #f8f9fa;
+      --bg-card:    #ffffff;
+      --border:     #e5e7eb;
+      --border-2:   #d1d5db;
+      --text:       #1a1a2e;
+      --text-muted: #6b7280;
       --accent:     #e8930a;
       --accent-dim: #c47a08;
-      --accent-bg:  rgba(232,147,10,0.06);
-      --white:      #ffffff;
+      --accent-bg:  rgba(232,147,10,0.08);
+      --white:      #1a1a2e;
       --max-w:      1100px;
     }
 
@@ -75,7 +75,7 @@
     /* ── HEADER ──────────────────────────────────────────── */
     header {
       position: sticky; top: 0; z-index: 200;
-      background: rgba(10,10,15,0.96);
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -460,7 +460,7 @@
     /* ── MOBILE STICKY BAR ───────────────────────────────── */
     .mobile-cta-bar {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
-      background: rgba(10,10,15,0.97); backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
       border-top: 1px solid var(--border); padding: 12px 24px;
       align-items: center; justify-content: space-between; gap: 16px;
     }

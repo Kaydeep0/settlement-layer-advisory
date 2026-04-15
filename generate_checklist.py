@@ -55,16 +55,7 @@ def _wrap(text: str, font: str, size: float, max_w: float) -> list:
 
 # ── Canvas callbacks ────────────────────────────────────────────────────────────
 def _draw_bg_watermark_footer(canvas, doc):
-    """Subtle amber watermark, light footer rule, muted footer text on white page."""
-    # Watermark — faint amber tint on white background
-    canvas.saveState()
-    canvas.setFillColor(Color(0.91, 0.576, 0.039, alpha=0.06))
-    canvas.setFont('Helvetica-Bold', 36)
-    canvas.translate(306, 396)
-    canvas.rotate(45)
-    canvas.drawCentredString(0, 0, 'SETTLEMENT LAYER ADVISORY')
-    canvas.restoreState()
-
+    """Light footer rule and muted footer text on white page."""
     # Footer rule — light gray on white
     canvas.setStrokeColor(BORDER)
     canvas.setLineWidth(0.5)
