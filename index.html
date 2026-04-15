@@ -758,6 +758,68 @@
 
       .btn-primary { width: 100%; text-align: center; }
     }
+
+    .hero-problems {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+
+    .hero-problem-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--bg-card);
+    }
+
+    .hero-problem {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .problem-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .problem-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .hero-solution {
+      padding: 18px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .hero-problem-row {
+        grid-template-columns: 1fr;
+      }
+      .hero-problem {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+    }
   </style>
 </head>
 <body>
@@ -769,7 +831,7 @@
       <div class="logo">Settlement<span> Layer</span> Advisory</div>
       <nav class="desktop-nav" id="main-nav">
         <a href="#services">Services</a>
-        <a href="#credentials">About</a>
+        <a href="#eigenstate">About</a>
         <a href="https://tally.so/r/0QjQgQ" class="nav-cta">Get Started</a>
       </nav>
       <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
@@ -787,9 +849,29 @@
       <span class="eigenstate-badge">Eigenstate Research</span>
     </div>
     <h1>The Compliance Layer the Tokenized Asset Market <em>Is Missing</em></h1>
-    <p class="hero-sub">
-      Licensed securities professional with Series 7 and Series 66, private credit analyst, and compliance auditor, combined with Eigenstate Research, a proprietary regulatory field measurement system with on-chain proof.
-    </p>
+    <div class="hero-problems">
+      <div class="hero-problem-row">
+        <div class="hero-problem">
+          <span class="problem-num">01</span>
+          <span class="problem-text">You cannot legally onboard US investors without licensed securities verification.</span>
+        </div>
+        <div class="hero-solution">We have licensed professionals that handle onboarding.</div>
+      </div>
+      <div class="hero-problem-row">
+        <div class="hero-problem">
+          <span class="problem-num">02</span>
+          <span class="problem-text">Your offering structure has not been reviewed against post-January 2026 SEC guidance on tokenized securities.</span>
+        </div>
+        <div class="hero-solution">We review your full offering structure and close the compliance gaps before you go to market.</div>
+      </div>
+      <div class="hero-problem-row">
+        <div class="hero-problem">
+          <span class="problem-num">03</span>
+          <span class="problem-text">You are reading headlines. Your competitors are reading the field before headlines form.</span>
+        </div>
+        <div class="hero-solution">Eigenstate Research measures regulatory pressure across the settlement layer before it becomes public.</div>
+      </div>
+    </div>
     <div class="hero-actions">
       <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
       <a href="#eigenstate" class="btn-ghost">
@@ -816,38 +898,6 @@
   </div>
 </section>
 
-<!-- ── PROBLEM ───────────────────────────────────────────── -->
-<section class="problem" id="problem">
-  <div class="container">
-    <div class="problem-header">
-      <div class="section-label">The Gap</div>
-      <h2 class="section-title">Most RWA protocols are built by engineers who understand the blockchain side but cannot legally onboard investors.</h2>
-    </div>
-    <div class="problem-cards">
-      <div class="problem-card">
-        <div class="problem-card-num">01</div>
-        <p>
-          <strong>You need licensed verification for Reg D and Reg S offerings.</strong>
-          Your engineers cannot do this. Onboarding investors without licensed professional verification creates liability that compounds as your protocol scales.
-        </p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-card-num">02</div>
-        <p>
-          <strong>Compliance structure errors before launch cost more than getting it right the first time.</strong>
-          Jurisdictional missteps, missing offering disclosures, and unreviewed transfer restrictions surface after capital is committed. Fixing them at that stage is expensive.
-        </p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-card-num">03</div>
-        <p>
-          <strong>Regulatory pressure is building across the settlement layer. Most protocols do not know where.</strong>
-          The engine currently reads elevated field pressure on the Federal Reserve, SEC, and entities in the stablecoin reserve topology. Most protocols find out at the headline stage.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ── SERVICES ──────────────────────────────────────────── -->
 <section class="services" id="services">
@@ -892,59 +942,6 @@
   </div>
 </section>
 
-<!-- ── CREDENTIALS ───────────────────────────────────────── -->
-<section class="credentials" id="credentials">
-  <div class="container">
-    <div class="credentials-layout">
-      <div class="credentials-left">
-        <div class="section-label">Credentials</div>
-        <h2 class="section-title">The Combination That Does Not Exist Anywhere Else</h2>
-        <p>
-          Active securities licenses, private credit expertise, and a live regulatory field measurement system. Most compliance consultants have one of these. Not all three operating together.
-        </p>
-      </div>
-      <div class="credentials-right">
-        <ul class="credential-list">
-          <li class="credential-item">
-            <div class="cred-marker"></div>
-            <div>
-              <div class="cred-title">Series 7 (Active)</div>
-              <div class="cred-desc">General Securities Representative license. Required for licensed accredited investor verification and securities suitability assessment.</div>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="cred-marker"></div>
-            <div>
-              <div class="cred-title">Series 66 (Active)</div>
-              <div class="cred-desc">Uniform Combined State Law license. Investment adviser representative and securities agent.</div>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="cred-marker"></div>
-            <div>
-              <div class="cred-title">Private Credit Analyst</div>
-              <div class="cred-desc">Structured credit, private lending, and alternative asset analysis experience applied to tokenized credit structures.</div>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="cred-marker"></div>
-            <div>
-              <div class="cred-title">Compliance Auditor</div>
-              <div class="cred-desc">Regulatory review, gap analysis, and audit methodology for financial protocols and offering structures.</div>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="cred-marker"></div>
-            <div>
-              <div class="cred-title">Eigenstate Research</div>
-              <div class="cred-desc">Proprietary regulatory field measurement with on-chain proof of observation timestamps. Methodology publicly available. Every signal committed to Base mainnet before publication.</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ── EIGENSTATE ─────────────────────────────────────────── -->
 <section class="eigenstate" id="eigenstate">
