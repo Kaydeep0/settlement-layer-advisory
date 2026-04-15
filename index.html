@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settlement Layer Advisory — Where Regulatory Intelligence Meets Licensed Compliance</title>
+  <title>Settlement Layer Advisory: Where Regulatory Intelligence Meets Licensed Compliance</title>
   <meta name="description" content="Licensed securities compliance and proprietary regulatory field measurement for tokenized asset protocols. Series 7, Series 66, Eigenstate Research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -35,10 +35,14 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 16px;
+      font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+      font-size: 15px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .logo {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -470,6 +474,28 @@
     .eigenstate {
       background: var(--bg-2);
       border-bottom: 1px solid var(--border);
+      border-left: 4px solid rgba(201,168,76,0.4);
+    }
+
+    .eigenstate .section-title {
+      font-size: clamp(30px, 5vw, 48px);
+    }
+
+    .eigenstate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #0a0a0f;
+      background: var(--accent);
+      padding: 4px 12px;
+      border-radius: 3px;
+      margin-left: 12px;
+      vertical-align: middle;
     }
 
     .eigenstate-inner {
@@ -756,10 +782,13 @@
 <!-- ── HERO ─────────────────────────────────────────────── -->
 <section class="hero">
   <div class="container">
-    <div class="hero-eyebrow">Where Regulatory Intelligence Meets Licensed Compliance</div>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-bottom:28px;">
+      <div class="hero-eyebrow" style="margin-bottom:0;">Where Regulatory Intelligence Meets Licensed Compliance</div>
+      <span class="eigenstate-badge">Eigenstate Research</span>
+    </div>
     <h1>The Compliance Layer the Tokenized Asset Market <em>Is Missing</em></h1>
     <p class="hero-sub">
-      Licensed securities professional with Series 7 and Series 66, private credit analyst, and compliance auditor — combined with proprietary regulatory field measurement across the tokenized settlement layer.
+      Licensed securities professional with Series 7 and Series 66, private credit analyst, and compliance auditor, combined with Eigenstate Research, a proprietary regulatory field measurement system with on-chain proof.
     </p>
     <div class="hero-actions">
       <a href="https://tally.so/r/0QjQgQ" class="btn-primary">Request a Briefing</a>
@@ -806,7 +835,7 @@
         <div class="problem-card-num">02</div>
         <p>
           <strong>Compliance structure errors before launch cost more than getting it right the first time.</strong>
-          Jurisdictional missteps, missing offering disclosures, and unreviewed transfer restrictions surface after capital is committed — when fixing them is expensive.
+          Jurisdictional missteps, missing offering disclosures, and unreviewed transfer restrictions surface after capital is committed. Fixing them at that stage is expensive.
         </p>
       </div>
       <div class="problem-card">
@@ -879,14 +908,14 @@
           <li class="credential-item">
             <div class="cred-marker"></div>
             <div>
-              <div class="cred-title">Series 7 — Active</div>
+              <div class="cred-title">Series 7 (Active)</div>
               <div class="cred-desc">General Securities Representative license. Required for licensed accredited investor verification and securities suitability assessment.</div>
             </div>
           </li>
           <li class="credential-item">
             <div class="cred-marker"></div>
             <div>
-              <div class="cred-title">Series 66 — Active</div>
+              <div class="cred-title">Series 66 (Active)</div>
               <div class="cred-desc">Uniform Combined State Law license. Investment adviser representative and securities agent.</div>
             </div>
           </li>
@@ -941,7 +970,7 @@
         <div class="signal-panel">
           <div class="signal-panel-header">
             <div class="signal-dot"></div>
-            <div class="signal-panel-title">Live Field Readings — Settlement Topology</div>
+            <div class="signal-panel-title">Eigenstate Research: Live Field Readings</div>
           </div>
           <div class="signal-rows">
             <div class="signal-row">
