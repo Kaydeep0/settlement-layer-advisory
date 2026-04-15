@@ -470,6 +470,40 @@
       line-height: 1.6;
     }
 
+    /* ── CHECKLIST ──────────────────────────────────────── */
+    .checklist-section {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 0;
+    }
+
+    .checklist-desc {
+      color: var(--text-muted);
+      font-size: 13px;
+      max-width: 620px;
+      line-height: 1.7;
+      margin-top: 12px;
+      margin-bottom: 32px;
+    }
+
+    .pdf-embed-wrapper {
+      border: 1px solid var(--border-2);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .pdf-embed {
+      width: 100%;
+      height: 640px;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .pdf-embed { height: 420px; }
+    }
+
     /* ── EIGENSTATE ─────────────────────────────────────── */
     .eigenstate {
       background: var(--bg-2);
@@ -939,6 +973,20 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<!-- ── CHECKLIST ──────────────────────────────────────────── -->
+<section class="checklist-section" id="checklist">
+  <div class="container">
+    <div class="section-label">Free Resource</div>
+    <h2 class="section-title">The RWA Protocol Compliance Checklist</h2>
+    <p class="checklist-desc">Based on the SEC January 28 2026 joint statement on tokenized securities. 25 requirements across four sections. Download free.</p>
+    <div class="pdf-embed-wrapper">
+      <iframe src="checklist.pdf" class="pdf-embed" title="RWA Compliance Checklist"></iframe>
+    </div>
+    <a href="checklist.pdf" download="RWA-Compliance-Checklist-Settlement-Layer-Advisory.pdf" class="btn-primary" style="margin-top: 24px; display: inline-block;">Download Checklist</a>
   </div>
 </section>
 
