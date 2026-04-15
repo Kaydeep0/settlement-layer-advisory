@@ -18,13 +18,14 @@ ACCENT  = HexColor('#e8930a')
 MUTED   = HexColor('#8a8aa0')
 BORDER  = HexColor('#1e1e30')
 WHITE   = HexColor('#ffffff')
+GRAY    = HexColor('#888888')
 DARK    = HexColor('#0a0a0f')
 
 # ── Page geometry ─────────────────────────────────────────────────────────────
 W, H        = LETTER          # 612 x 792 pts
-ML          = 52              # margin left
-MR          = W - 52          # margin right
-CW          = MR - ML         # content width = 508
+ML          = 60              # margin left
+MR          = W - 60          # margin right
+CW          = MR - ML         # content width = 492
 FOOTER_Y    = 28
 FOOTER_LINE = FOOTER_Y + 14
 TOP_START   = H - 58          # first y position after top margin
@@ -75,10 +76,10 @@ class ChecklistPDF:
 
     def _watermark(self):
         self.c.saveState()
-        self.c.setFillColor(WHITE)
-        self.c.setFillAlpha(0.04)
-        self.c.setFont('Helvetica-Bold', 48)
-        self.c.translate(W / 2, H / 2)
+        self.c.setFillColor(GRAY)
+        self.c.setFillAlpha(0.03)
+        self.c.setFont('Helvetica-Bold', 36)
+        self.c.translate(W / 2, 200)
         self.c.rotate(45)
         self.c.drawCentredString(0, 0, 'SETTLEMENT LAYER ADVISORY')
         self.c.restoreState()
@@ -166,7 +167,7 @@ class ChecklistPDF:
         needed = 36
         if self.need_page(needed):
             self.new_page()
-        self.y -= 16
+        self.y -= 20
         # Number badge
         badge_w = stringWidth(num, 'Helvetica-Bold', 8) + 14
         self.c.setFillColor(ACCENT)
@@ -190,12 +191,12 @@ class ChecklistPDF:
         self.c.setFillColor(MUTED)
         self.c.setFont('Helvetica-Oblique', 8)
         self.c.drawString(ML, self.y, note)
-        self.y -= 12
+        self.y -= 22  # 12pt text descent + 10pt gap before first item
 
     def checkbox_item(self, text: str):
         """Draw a checkbox row with [ ] in amber and wrapped text in Courier."""
         font       = 'Courier'
-        font_size  = 8.5
+        font_size  = 10
         leading    = 18
         box_str    = '[ ]'
         box_w      = stringWidth(box_str, 'Courier-Bold', font_size) + 6
@@ -220,7 +221,7 @@ class ChecklistPDF:
             self.c.drawString(text_x, self.y, ln)
             self.y -= leading
 
-        self.y -= 8  # inter-item spacing
+        self.y -= 10  # inter-item spacing
 
     def closing_box(self, heading: str, paragraphs: list, final_line: str):
         """Amber-background box for the closing call to action."""
