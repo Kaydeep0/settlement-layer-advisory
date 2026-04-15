@@ -11,16 +11,15 @@ from reportlab.platypus import (
 )
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.pagesizes import LETTER
-from reportlab.lib.colors import HexColor, Color
+from reportlab.lib.colors import HexColor, Color, white
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 # ── Colors ─────────────────────────────────────────────────────────────────────
-BG      = HexColor('#0a0a0f')
-TEXT    = HexColor('#e8e8e8')
-ACCENT  = HexColor('#e8930a')
-MUTED   = HexColor('#8a8aa0')
-DARK    = HexColor('#0a0a0f')
-BORDER2 = HexColor('#2a2a40')
+TEXT   = HexColor('#1a1a2e')   # dark navy — body text
+ACCENT = HexColor('#e8930a')   # amber — brand accent
+MUTED  = HexColor('#6b7280')   # gray — secondary / footer
+DARK   = HexColor('#1a1a2e')   # dark navy — inset strips
+BORDER = HexColor('#e5e7eb')   # light gray — rules / borders
 
 # ── Page geometry ───────────────────────────────────────────────────────────────
 W, H   = LETTER          # 612 x 792 pt
@@ -34,7 +33,6 @@ FOOTER_Y      = 42
 FOOTER_RULE_Y = 55
 
 # Height the canvas header occupies on page 1 (Spacer must match this).
-# Calculated from top of content area (y=720) to end of source text + 24pt gap.
 HEADER1_H = 158
 
 
@@ -57,22 +55,18 @@ def _wrap(text: str, font: str, size: float, max_w: float) -> list:
 
 # ── Canvas callbacks ────────────────────────────────────────────────────────────
 def _draw_bg_watermark_footer(canvas, doc):
-    """Dark background, diagonal watermark, footer rule and text."""
-    # Background — drawn FIRST before any other content
-    canvas.setFillColor(BG)
-    canvas.rect(0, 0, W, H, fill=1, stroke=0)
-
-    # Watermark
+    """Subtle amber watermark, light footer rule, muted footer text on white page."""
+    # Watermark — faint amber tint on white background
     canvas.saveState()
-    canvas.setFillColor(Color(0.9, 0.9, 0.9, alpha=0.04))
-    canvas.setFont('Helvetica-Bold', 42)
+    canvas.setFillColor(Color(0.91, 0.576, 0.039, alpha=0.06))
+    canvas.setFont('Helvetica-Bold', 36)
     canvas.translate(306, 396)
     canvas.rotate(45)
     canvas.drawCentredString(0, 0, 'SETTLEMENT LAYER ADVISORY')
     canvas.restoreState()
 
-    # Footer rule
-    canvas.setStrokeColor(BORDER2)
+    # Footer rule — light gray on white
+    canvas.setStrokeColor(BORDER)
     canvas.setLineWidth(0.5)
     canvas.line(ML, FOOTER_RULE_Y, W - MR, FOOTER_RULE_Y)
 
@@ -91,33 +85,37 @@ def _draw_header_p1(canvas, doc):
     """Full header block on page 1, drawn from top of content area downward."""
     y = H - MT  # 720
 
+    # Brand line
     canvas.setFillColor(ACCENT)
     canvas.setFont('Helvetica-Bold', 14)
     canvas.drawString(ML, y, 'SETTLEMENT LAYER ADVISORY')
     y -= 20
 
+    # Subtitle brand line
     canvas.setFillColor(MUTED)
     canvas.setFont('Helvetica', 9)
     canvas.drawString(ML, y, 'Powered by Eigenstate Research')
     y -= 14
 
+    # Amber rule
     canvas.setStrokeColor(ACCENT)
     canvas.setLineWidth(1.0)
     canvas.line(ML, y, W - MR, y)
-    y -= 6
+    y -= 26
 
-    y -= 20  # space below rule
-
+    # Main title
     canvas.setFillColor(TEXT)
     canvas.setFont('Helvetica-Bold', 24)
     canvas.drawString(ML, y, 'The RWA Protocol Compliance Checklist')
     y -= 32
 
+    # Subtitle
     canvas.setFillColor(MUTED)
     canvas.setFont('Helvetica', 12)
     canvas.drawString(ML, y, 'What your tokenized offering needs before it touches a US investor')
     y -= 18
 
+    # Source note
     canvas.setFont('Helvetica-Oblique', 8)
     source = ('Based on SEC January 28 2026 joint statement on tokenized securities, '
               'Securities Act of 1933, and current FINRA requirements')
@@ -128,7 +126,7 @@ def _draw_header_p1(canvas, doc):
 
 def _draw_header_p2plus(canvas, doc):
     """Minimal header for pages 2+, drawn within the top margin."""
-    y = H - 46  # within the 72pt top margin
+    y = H - 46
 
     canvas.setStrokeColor(ACCENT)
     canvas.setLineWidth(0.5)
@@ -158,15 +156,15 @@ class SectionHeader(Flowable):
     PAD_TOP  = 10
     BADGE_H  = 16
     RULE_GAP = 8
-    NOTE_H   = 14   # note line height including gap below
+    NOTE_H   = 14
     PAD_BOT  = 12
 
     def __init__(self, num: str, title: str, note: str = None):
         super().__init__()
-        self.num   = num
-        self.title = title
-        self.note  = note
-        self.width = CW
+        self.num    = num
+        self.title  = title
+        self.note   = note
+        self.width  = CW
         self.height = (self.PAD_TOP + self.BADGE_H + self.RULE_GAP
                        + (self.NOTE_H if note else 0) + self.PAD_BOT)
 
@@ -177,27 +175,29 @@ class SectionHeader(Flowable):
         c = self.canv
         h = self.height
 
-        # Badge + title row sits at top of flowable
         badge_y = h - self.PAD_TOP - self.BADGE_H
-
         badge_w = stringWidth(self.num, 'Helvetica-Bold', 9) + 16
+
+        # Amber badge
         c.setFillColor(ACCENT)
         c.roundRect(0, badge_y, badge_w, self.BADGE_H, 2, fill=1, stroke=0)
-        c.setFillColor(DARK)
+        # White text on amber badge
+        c.setFillColor(white)
         c.setFont('Helvetica-Bold', 9)
         c.drawString(8, badge_y + 4, self.num)
 
+        # Section title — dark navy
         c.setFillColor(TEXT)
         c.setFont('Helvetica-Bold', 14)
         c.drawString(badge_w + 10, badge_y + 3, self.title)
 
-        # Amber rule
+        # Amber rule below badge row
         rule_y = badge_y - self.RULE_GAP
         c.setStrokeColor(ACCENT)
         c.setLineWidth(0.5)
         c.line(0, rule_y, self.width, rule_y)
 
-        # Optional note
+        # Optional muted italic note
         if self.note:
             note_y = rule_y - self.NOTE_H + 2
             c.setFillColor(MUTED)
@@ -206,7 +206,7 @@ class SectionHeader(Flowable):
 
 
 class ClosingBox(Flowable):
-    """Amber-background CTA box with dark text and dark inset URL strip."""
+    """Amber-background CTA box with white text and dark inset URL strip."""
 
     PAD = 20
 
@@ -223,10 +223,10 @@ class ClosingBox(Flowable):
         max_w = w - p * 2
         h     = p + 18 + 10   # top pad + heading + gap
         for para in self.paragraphs:
-            h += len(_wrap(para, 'Helvetica', 10, max_w)) * 14 + 8
+            h += len(_wrap(para, 'Helvetica', 10, max_w)) * 15 + 8
         url_lines = _wrap(self.url, 'Helvetica-Bold', 10, max_w - 8)
-        h += len(url_lines) * 14 + 16   # inset box
-        h += p                           # bottom pad
+        h += len(url_lines) * 15 + 16
+        h += p
         return h
 
     def wrap(self, availW, availH):
@@ -243,24 +243,25 @@ class ClosingBox(Flowable):
         c.setFillColor(ACCENT)
         c.roundRect(0, 0, self.width, self.height, 4, fill=1, stroke=0)
 
-        # Draw from top downward; y is baseline cursor
         y = self.height - p
 
-        c.setFillColor(DARK)
+        # Heading — white on amber
+        c.setFillColor(white)
         c.setFont('Helvetica-Bold', 12)
         c.drawString(p, y - 14, self.heading)
-        y -= 28   # heading height + gap
+        y -= 28
 
+        # Body paragraphs — white on amber
         c.setFont('Helvetica', 10)
         for para in self.paragraphs:
             for ln in _wrap(para, 'Helvetica', 10, max_w):
                 c.drawString(p, y - 12, ln)
-                y -= 14
+                y -= 15
             y -= 8
 
         # Dark inset URL strip
         url_lines = _wrap(self.url, 'Helvetica-Bold', 10, max_w - 8)
-        inset_h   = len(url_lines) * 14 + 12
+        inset_h   = len(url_lines) * 15 + 12
         inset_y   = y - inset_h
         c.setFillColor(DARK)
         c.roundRect(p - 4, inset_y, self.width - p * 2 + 8, inset_h, 3, fill=1, stroke=0)
@@ -269,26 +270,26 @@ class ClosingBox(Flowable):
         ty = y - 12
         for ln in url_lines:
             c.drawString(p, ty, ln)
-            ty -= 14
+            ty -= 15
 
 
 # ── Styles ──────────────────────────────────────────────────────────────────────
 _CHECKBOX_STYLE = ParagraphStyle(
     'Checkbox',
-    fontName='Courier-Bold',
+    fontName='Helvetica-Bold',
     fontSize=10,
     textColor=ACCENT,
-    leading=14,
+    leading=15,
     spaceBefore=0,
     spaceAfter=0,
 )
 
 _ITEM_STYLE = ParagraphStyle(
     'ItemText',
-    fontName='Courier',
+    fontName='Helvetica',
     fontSize=10,
     textColor=TEXT,
-    leading=14,
+    leading=15,
     spaceBefore=0,
     spaceAfter=0,
 )
@@ -296,7 +297,7 @@ _ITEM_STYLE = ParagraphStyle(
 
 # ── Checklist item factory ──────────────────────────────────────────────────────
 def _item(text: str) -> Table:
-    """Two-column table: amber [ ] | item text, with 8pt space after."""
+    """Two-column table: amber [ ] | item text in Helvetica."""
     tbl = Table(
         [[Paragraph('[ ]', _CHECKBOX_STYLE), Paragraph(text, _ITEM_STYLE)]],
         colWidths=[22, CW - 22],
@@ -388,9 +389,7 @@ CLOSING_URL = 'kaydeep0.github.io/settlement-layer-advisory'
 
 # ── Build ────────────────────────────────────────────────────────────────────────
 def _section(num, title, items, note=None):
-    """Returns a list of flowables for one section."""
     header = SectionHeader(num, title, note=note)
-    # Keep header + first item together to prevent orphan headers
     block = [KeepTogether([header, _item(items[0])])]
     for text in items[1:]:
         block.append(_item(text))
@@ -411,18 +410,12 @@ def build(out_path: str):
     )
 
     story = []
-
-    # Reserve space on page 1 for the canvas-drawn header
     story.append(Spacer(1, HEADER1_H))
-
-    # Sections
     story.extend(_section('SECTION 1', 'OFFERING STRUCTURE', SECTION_1))
     story.extend(_section('SECTION 2', 'INVESTOR ONBOARDING', SECTION_2,
                           note='Requires licensed professional'))
     story.extend(_section('SECTION 3', 'SMART CONTRACT AND SETTLEMENT COMPLIANCE', SECTION_3))
     story.extend(_section('SECTION 4', 'ONGOING COMPLIANCE', SECTION_4))
-
-    # Closing box
     story.append(Spacer(1, 16))
     story.append(ClosingBox(
         heading='HOW MANY OF THESE ARE UNCHECKED?',
