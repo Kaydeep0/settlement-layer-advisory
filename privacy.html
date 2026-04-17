@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Settlement Layer Advisory</title>
+  <meta name="description" content="Privacy policy for Settlement Layer Advisory. How we collect, use, and protect your information.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #ffffff;
+      --bg-2:       #f8f9fa;
+      --bg-card:    #ffffff;
+      --border:     #e5e7eb;
+      --border-2:   #d1d5db;
+      --text:       #1a1a2e;
+      --text-muted: #6b7280;
+      --accent:     #e8930a;
+      --accent-dim: #c47a08;
+      --accent-bg:  rgba(232,147,10,0.08);
+      --white:      #1a1a2e;
+      --max-w:      1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .logo { font-family: 'Inter', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── WATERMARK ───────────────────────────────────────────── */
+    .site-watermark {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(-45deg);
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 800; color: #1a1a2e; opacity: 0.015;
+      white-space: nowrap; pointer-events: none;
+      z-index: 0; letter-spacing: 0.05em; user-select: none;
+    }
+    header, main, footer { position: relative; z-index: 1; }
+
+    /* ── HEADER ──────────────────────────────────────────────── */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 64px;
+    }
+    .logo {
+      display: flex; align-items: center;
+      font-size: 15px; font-weight: 600;
+      color: var(--white); letter-spacing: -0.01em;
+    }
+    .logo span { color: var(--accent); }
+    .logo-mark { width: 28px; height: 28px; margin-right: 10px; display: block; }
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a { font-size: 13px; font-weight: 500; color: var(--text-muted); transition: color 0.15s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta {
+      font-size: 13px; font-weight: 600; color: var(--accent) !important;
+      border: 1px solid rgba(232,147,10,0.3); padding: 7px 16px; border-radius: 4px;
+      transition: background 0.15s, border-color 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--accent-bg); border-color: rgba(232,147,10,0.6) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; }
+
+    /* ── PAGE HERO ───────────────────────────────────────────── */
+    .page-hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+    }
+    .page-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1px; background: var(--accent);
+    }
+    .page-hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 16px;
+      max-width: 640px;
+    }
+    .page-meta {
+      font-size: 12px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .page-meta-dot {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--border-2); display: inline-block;
+    }
+
+    /* ── CONTENT BODY ────────────────────────────────────────── */
+    main { padding: 72px 0 96px; }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Sidebar nav */
+    .policy-nav {
+      position: sticky;
+      top: 88px;
+    }
+    .policy-nav-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .policy-nav a {
+      display: block;
+      font-size: 12px; color: var(--text-muted);
+      padding: 6px 0;
+      border-left: 2px solid var(--border);
+      padding-left: 14px;
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1.4;
+    }
+    .policy-nav a:hover {
+      color: var(--accent);
+      border-left-color: var(--accent);
+    }
+
+    /* Policy sections */
+    .policy-body { max-width: 680px; }
+
+    .policy-section { margin-bottom: 56px; }
+    .policy-section:last-child { margin-bottom: 0; }
+
+    .policy-section-num {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .policy-section-num::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .policy-section h2 {
+      font-size: 20px; font-weight: 700;
+      color: var(--white); margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .policy-section p {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.85; margin-bottom: 16px;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section p strong {
+      color: var(--text); font-weight: 600;
+    }
+
+    /* Data table */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 20px 0; font-size: 13px;
+    }
+    .data-table th {
+      text-align: left; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); padding: 10px 16px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 13px;
+      vertical-align: top; line-height: 1.6;
+    }
+    .data-table td:first-child {
+      color: var(--text); font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* Highlight box */
+    .policy-highlight {
+      background: var(--accent-bg);
+      border: 1px solid rgba(232,147,10,0.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin: 20px 0;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .policy-highlight strong { color: var(--accent); }
+
+    /* Contact block */
+    .contact-block {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-top: 20px;
+    }
+    .contact-block-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .contact-block a {
+      font-size: 15px; font-weight: 600;
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+    }
+    .contact-block a:hover { text-decoration: underline; }
+    .contact-block p {
+      font-size: 12px; color: var(--text-muted);
+      margin-top: 6px; line-height: 1.6;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 48px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; flex-wrap: wrap; }
+    .footer-brand .logo { font-size: 14px; margin-bottom: 10px; }
+    .footer-powered { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+    .footer-disclaimer { font-size: 11px; color: var(--text-muted); max-width: 420px; line-height: 1.75; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); transition: color 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav.desktop-nav { display: none; }
+      nav.desktop-nav.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px; gap: 16px; z-index: 100;
+      }
+      .policy-grid { grid-template-columns: 1fr; gap: 40px; }
+      .policy-nav { position: static; }
+      .policy-nav a { padding-left: 12px; }
+      .footer-inner { flex-direction: column; }
+      .footer-links { align-items: flex-start; }
+      .data-table { font-size: 12px; }
+      .data-table td, .data-table th { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-watermark">SETTLEMENT LAYER ADVISORY</div>
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="logo-sla.svg" alt="Settlement Layer Advisory" class="logo-mark">
+        Settlement<span>&nbsp;Layer</span>&nbsp;Advisory
+      </a>
+      <nav class="desktop-nav" id="main-nav">
+        <a href="index.html#gap">The Gap</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#eigenstate">Research</a>
+        <a href="index.html#checklist">Checklist</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#get-started" class="nav-cta">Get Started</a>
+      </nav>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── PAGE HERO ─────────────────────────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="page-meta">
+      <span>Settlement Layer Advisory</span>
+      <span class="page-meta-dot"></span>
+      <span>Last updated: April 16, 2026</span>
+      <span class="page-meta-dot"></span>
+      <span>Questions: <a href="mailto:privacy@settlementlayeradvisory.com" style="color:var(--accent)">privacy@settlementlayeradvisory.com</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────────── -->
+<main>
+  <div class="container">
+    <div class="policy-grid">
+
+      <!-- Sidebar navigation -->
+      <aside class="policy-nav">
+        <div class="policy-nav-label">On this page</div>
+        <a href="#what-we-collect">What we collect</a>
+        <a href="#how-we-use">How we use it</a>
+        <a href="#not-sold">Not sold to third parties</a>
+        <a href="#retention">Data retention</a>
+        <a href="#your-rights">Your rights</a>
+        <a href="#security">Security</a>
+        <a href="#contact">Contact us</a>
+      </aside>
+
+      <!-- Policy body -->
+      <div class="policy-body">
+
+        <!-- Section 1 -->
+        <div class="policy-section" id="what-we-collect">
+          <div class="policy-section-num">01</div>
+          <h2>What we collect</h2>
+          <p>
+            Settlement Layer Advisory collects information you provide
+            directly when submitting an intake request through our
+            contact form. We do not use tracking pixels, behavioral
+            analytics platforms, or third-party advertising cookies.
+          </p>
+          <p>
+            The following data is collected via the intake form on
+            this site, hosted by Tally:
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Purpose</th>
+                <th>Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Full name</td>
+                <td>To address you in correspondence</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Email address</td>
+                <td>To respond to your inquiry</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Company or protocol name</td>
+                <td>To understand the entity we are reviewing</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Job title or role</td>
+                <td>To direct your inquiry to the right team member</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>Description of compliance need</td>
+                <td>To assess whether we can assist and prepare a response</td>
+                <td>Yes</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Form submissions are processed by Tally (tally.so). Tally
+            operates under its own privacy policy, available at
+            <a href="https://tally.so/privacy" target="_blank" rel="noopener" style="color:var(--accent)">tally.so/privacy</a>.
+            We receive your submission data directly and store it in
+            our internal intake system.
+          </p>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="policy-section" id="how-we-use">
+          <div class="policy-section-num">02</div>
+          <h2>How we use it</h2>
+          <p>
+            Information collected through the intake form is used for
+            one purpose only: to respond to your compliance inquiry.
+          </p>
+
+          <div class="policy-highlight">
+            <strong>We do not use your information for marketing.</strong>
+            We do not add you to mailing lists. We do not send
+            newsletters, promotional material, or unsolicited
+            follow-up communications. Your information exists in our
+            system only in connection with the inquiry you submitted.
+          </div>
+
+          <p>
+            Specifically, submitted data is used to:
+          </p>
+          <p>
+            <strong>Assess your inquiry.</strong> We review the details
+            of your submission to determine whether Settlement Layer
+            Advisory can assist with your compliance need and at what
+            scope.
+          </p>
+          <p>
+            <strong>Respond within 48 hours.</strong> We use your
+            email address to send a single response to your inquiry.
+            All correspondence is conducted directly between you and
+            a member of our team. No automated sequences are used.
+          </p>
+          <p>
+            <strong>Maintain an engagement record.</strong> If an
+            engagement proceeds, we retain a record of the inquiry
+            and correspondence as part of the client file, consistent
+            with our professional obligations as a licensed compliance
+            advisory firm.
+          </p>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="policy-section" id="not-sold">
+          <div class="policy-section-num">03</div>
+          <h2>Not sold to third parties</h2>
+          <p>
+            Your personal information is never sold, rented, licensed,
+            or otherwise transferred to third parties for commercial
+            purposes.
+          </p>
+          <div class="policy-highlight">
+            <strong>We do not sell your data. Ever.</strong>
+            This applies to your name, email address, company
+            affiliation, and the contents of your inquiry. None of
+            this information is shared with advertisers, data brokers,
+            analytics vendors, or any other commercial third party.
+          </div>
+          <p>
+            The only circumstances under which information may be
+            shared with a third party are:
+          </p>
+          <p>
+            <strong>Service providers necessary to operate the firm.</strong>
+            For example, Tally processes form submissions on our behalf.
+            These providers operate under contractual obligations to
+            protect your data and are prohibited from using it for
+            their own purposes.
+          </p>
+          <p>
+            <strong>Legal obligations.</strong> If we are required by
+            law, court order, or regulatory authority to disclose
+            information, we will comply. We will notify you of such
+            a requirement where legally permitted to do so.
+          </p>
+          <p>
+            No other third-party sharing occurs.
+          </p>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="policy-section" id="retention">
+          <div class="policy-section-num">04</div>
+          <h2>Data retention</h2>
+          <p>
+            Inquiry data from submissions that do not proceed to an
+            engagement is retained for 90 days, then deleted from our
+            intake system.
+          </p>
+          <p>
+            Data associated with active or completed client engagements
+            is retained for the duration required by applicable
+            professional and regulatory standards. For licensed
+            securities compliance activities, this period is generally
+            a minimum of six years from the date of last activity.
+          </p>
+          <p>
+            You may request deletion of your data at any time by
+            contacting us at the address below. Where retention is
+            required by law or professional obligation, we will inform
+            you of the applicable requirement and retain only what is
+            necessary.
+          </p>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="policy-section" id="your-rights">
+          <div class="policy-section-num">05</div>
+          <h2>Your rights</h2>
+          <p>
+            You have the right to access, correct, or request deletion
+            of the personal information we hold about you. To exercise
+            any of these rights, contact us at the address in Section 07.
+            We will respond within 30 days.
+          </p>
+          <p>
+            <strong>Access.</strong> You may request a copy of the
+            information we hold in connection with your inquiry or
+            engagement.
+          </p>
+          <p>
+            <strong>Correction.</strong> If any information we hold
+            is inaccurate, you may request that we correct it.
+          </p>
+          <p>
+            <strong>Deletion.</strong> You may request that we delete
+            your personal information. Where we are not required by law
+            or professional obligation to retain it, we will do so
+            within 30 days of your request.
+          </p>
+          <p>
+            <strong>Objection.</strong> You may object to our processing
+            of your information at any time. This will not affect the
+            lawfulness of any processing carried out before your
+            objection.
+          </p>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="policy-section" id="security">
+          <div class="policy-section-num">06</div>
+          <h2>Security</h2>
+          <p>
+            Intake submissions are transmitted over encrypted connections
+            (TLS). Access to submission data within our internal systems
+            is restricted to team members directly involved in reviewing
+            and responding to compliance inquiries.
+          </p>
+          <p>
+            We do not store payment information. No financial data of
+            any kind is collected through this site.
+          </p>
+          <p>
+            Regulatory intelligence reports published by Eigenstate
+            Research are timestamped to Base mainnet prior to
+            publication. This is a credibility mechanism, not a
+            data collection mechanism. No personal information is
+            written to the blockchain in connection with this process.
+          </p>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="policy-section" id="contact">
+          <div class="policy-section-num">07</div>
+          <h2>Contact us</h2>
+          <p>
+            For any questions about this privacy policy, to request
+            access to your data, or to submit a deletion request,
+            contact us directly:
+          </p>
+          <div class="contact-block">
+            <div class="contact-block-label">Data requests and privacy inquiries</div>
+            <a href="mailto:privacy@settlementlayeradvisory.com">
+              privacy@settlementlayeradvisory.com
+            </a>
+            <p>We respond to all data requests within 30 days.</p>
+          </div>
+          <p style="margin-top:24px;">
+            This policy was last updated on <strong>April 16, 2026</strong>.
+            We will update this page if our practices change and note
+            the date of the most recent revision above.
+          </p>
+        </div>
+
+      </div><!-- /policy-body -->
+    </div><!-- /policy-grid -->
+  </div><!-- /container -->
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:10px;">
+          <img src="logo-sla.svg" alt="Settlement Layer Advisory" class="logo-mark">
+          Settlement<span>&nbsp;Layer</span>&nbsp;Advisory
+        </div>
+        <div class="footer-powered">Powered by Eigenstate Research</div>
+        <div class="footer-disclaimer">
+          Securities services provided through licensed professionals.
+          Nothing on this site constitutes legal advice. Regulatory
+          intelligence reports are research only and do not constitute
+          investment advice.
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html" style="color:var(--accent)">Privacy Policy</a>
+        <a href="https://kaydeep0.github.io/eigenstate-research" target="_blank" rel="noopener">
+          Eigenstate Research
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="index.html#get-started">Get Started</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('main-nav').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('main-nav');
+    const hb  = document.getElementById('hamburger');
+    if (!nav.contains(e.target) && !hb.contains(e.target)) {
+      nav.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
