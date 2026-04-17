@@ -1,0 +1,156 @@
+{
+  "date": "2026-04-17",
+  "generated_at": "2026-04-17T00:24:54",
+  "articles": [
+    {
+      "rank": 1,
+      "score": 5,
+      "title": "Texas man gets 23 years for $20 million crypto scam supposedly backed by Picasso and Van Gogh artwork",
+      "summary": "A Texas man was sentenced to over two decades in prison after prosecutors said he scammed investors of more than $20 million.",
+      "published": "2026-04-17T04:57:37+00:00",
+      "source": "The Block",
+      "url": "https://www.theblock.co/post/397821/texas-man-gets-23-years-for-20-million-crypto-scam-supposedly-backed-by-picasso-and-van-gogh-artwork?utm_source=rss&utm_medium=rss",
+      "hours_ago": -4.55
+    },
+    {
+      "rank": 2,
+      "score": 5,
+      "title": "Inside Binance\u2019s plan to become a global financial super app",
+      "summary": "Richard Teng explains why crypto fundamentals remain strong, how regulation is driving global adoption, and where Binance is headed next.",
+      "published": "2026-04-17T04:20:45+00:00",
+      "source": "The Block",
+      "url": "https://www.theblock.co/post/397806/inside-binances-plan-to-become-a-global-financial-super-app?utm_source=rss&utm_medium=rss",
+      "hours_ago": -3.93
+    },
+    {
+      "rank": 3,
+      "score": 5,
+      "title": "\u2018This is nuts\u2019: CFTC chair Selig grilled by lawmakers on prediction markets,\u00a0Hyperliquid, and staffing",
+      "summary": "Selig faced heat from lawmakers on how he plans to oversee prediction markets and whether it has the headcount to do it.",
+      "published": "2026-04-17T01:57:01+00:00",
+      "source": "The Block",
+      "url": "https://www.theblock.co/post/397800/this-is-nuts-cftc-chair-selig-grilled-by-lawmakers-on-prediction-markets-hyperliquid-and-staffing?utm_source=rss&utm_medium=rss",
+      "hours_ago": -1.54
+    },
+    {
+      "rank": 4,
+      "score": 5,
+      "title": "Bitcoin ETFs add $186M as Morgan Stanley\u2019s MSBT inflows top $100M in first six trading days",
+      "summary": "U.S. spot bitcoin ETFs added $186 million in their second straight day of positive flows, as Morgan Stanley's MSBT topped WisdomTree's fund.",
+      "published": "2026-04-16T21:32:38+00:00",
+      "source": "The Block",
+      "url": "https://www.theblock.co/post/397730/bitcoin-etfs-add-186m-as-morgan-stanleys-msbt-inflows-top-100m-in-first-six-trading-days?utm_source=rss&utm_medium=rss",
+      "hours_ago": 2.87
+    },
+    {
+      "rank": 5,
+      "score": 5,
+      "title": "Drift secures up to $127 million from Tether for user recovery, pivots from Circle\u2019s USDC to USDT after $280 million exploit",
+      "summary": "Drift Protocol said it has secured up to $127.5 million from Tether to support user recovery after the April 1 exploit.",
+      "published": "2026-04-16T21:30:48+00:00",
+      "source": "The Block",
+      "url": "https://www.theblock.co/post/397735/drift-127-million-tether-recovery-pivots-circle-usdc-usdt-280-million-exploit?utm_source=rss&utm_medium=rss",
+      "hours_ago": 2.9
+    },
+    {
+      "rank": 6,
+      "score": 3,
+      "title": "SEC EDGAR:  Home|EDGAR Search Home|Latest Filings|Previous Page",
+      "summary": "SEC EDGAR filing",
+      "published": "",
+      "source": "SEC EDGAR",
+      "url": "https://www.sec.gov/index.htm",
+      "hours_ago": null
+    },
+    {
+      "rank": 7,
+      "score": 3,
+      "title": "SEC EDGAR: Key to Descriptions(Filer)Filing was made by and describes the company named.(Subject)Filing describes the company named but was made by another entity.(Filed by)Filing was made by the company named but describes a subject company.(Reporting)Filing was made by an individual reporting holdings in a company.[Paper]Paper filingsare available by film number.[Cover]Filing contains an SEC-released cover letter or correspondence.(Each \"Reporting\" and \"Filed by\" filing has a matching \"Subject\" listing.) Key to Descriptions (Filer)",
+      "summary": "SEC EDGAR filing",
+      "published": "",
+      "source": "SEC EDGAR",
+      "url": "https://www.sec.gov/answers/publicdocs.htm",
+      "hours_ago": null
+    },
+    {
+      "rank": 8,
+      "score": 3,
+      "title": "SEC EDGAR: Leonardo Thomas C. (0002129304) (Reporting) Leonardo Thomas C. (0002129304) (Reporting) Leonardo Thomas C. (0002129304) (Reporting)",
+      "summary": "SEC EDGAR filing",
+      "published": "",
+      "source": "SEC EDGAR",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002129304&owner=include&count=20",
+      "hours_ago": null
+    },
+    {
+      "rank": 9,
+      "score": 3,
+      "title": "SEC EDGAR: 4 [html][text] Statement of changes in beneficial ownership of securitiesAccession Number: 0002129304-26-000012 \u00a0Act: 34 \u00a0Size:\u00a09 KB",
+      "summary": "SEC EDGAR filing",
+      "published": "",
+      "source": "SEC EDGAR",
+      "url": "https://www.sec.gov/Archives/edgar/data/2129304/000212930426000012/0002129304-26-000012-index.htm",
+      "hours_ago": null
+    },
+    {
+      "rank": 10,
+      "score": 3,
+      "title": "SEC EDGAR: SiriusPoint Ltd (0001576018) (Issuer) SiriusPoint Ltd (0001576018) (Issuer) SiriusPoint Ltd (0001576018) (Issuer)",
+      "summary": "SEC EDGAR filing",
+      "published": "",
+      "source": "SEC EDGAR",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001576018&owner=include&count=20",
+      "hours_ago": null
+    }
+  ],
+  "engine_readings": {
+    "Federal Reserve": {
+      "phi_s": 2.21,
+      "status": "HIGH"
+    },
+    "SEC": {
+      "phi_s": 1.29,
+      "status": "ELEVATED"
+    },
+    "CFTC": {
+      "phi_s": 0.83,
+      "status": "STABLE"
+    },
+    "OCC": {
+      "phi_s": 1.54,
+      "status": "ELEVATED"
+    },
+    "Circle": {
+      "phi_s": 2.03,
+      "status": "HIGH"
+    },
+    "Coinbase": {
+      "phi_s": 1.35,
+      "status": "ELEVATED"
+    },
+    "ONDO": {
+      "phi_s": 0.74,
+      "status": "STABLE"
+    },
+    "BlackRock": {
+      "phi_s": 1.68,
+      "status": "ELEVATED"
+    },
+    "Fireblocks": {
+      "phi_s": 0.51,
+      "status": "STABLE"
+    },
+    "Ripple": {
+      "phi_s": 2.92,
+      "status": "HIGH"
+    }
+  },
+  "parkash": {
+    "PT": 0.234562,
+    "kappa": 0.4729,
+    "coverage": 0.20603015075376885
+  },
+  "helix_block": 44882914,
+  "helix_tx": "eigenstate_obs",
+  "total_scanned": 52
+}

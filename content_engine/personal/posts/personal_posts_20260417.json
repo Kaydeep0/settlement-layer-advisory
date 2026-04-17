@@ -1,0 +1,82 @@
+{
+  "date": "2026-04-17",
+  "generated_at": "2026-04-17T00:25:46Z",
+  "model": "claude-sonnet-4-6",
+  "posts": [
+    {
+      "id": 1,
+      "template": "A",
+      "type": "macro_observation",
+      "post_text": "U.S. fiscal deficits have now surpassed private sector lending as the primary driver of economic activity.\n\nThis is not a cyclical blip. It is a structural regime change.\n\nWhen the government becomes the dominant source of economic impulse, the transmission mechanism for monetary policy breaks. Rate hikes slow private borrowing but cannot offset deficit spending at scale. Inflation becomes harder to kill because its fuel source sits outside the Fed's reach.\n\nFor fixed income and private credit markets, this reshapes the risk calculus entirely. Spread compression, duration positioning, and default modeling all assume a world where monetary policy sets the tone. That assumption is increasingly outdated.\n\nThe systems-level implication: capital markets are now priced against a fiscal anchor, not a monetary one. That changes how you think about everything from sovereign spreads to private credit underwriting.\n\nAre credit markets actually repricing for fiscal dominance, or are we still running old models on new terrain?\n\nSource: Sam Callahan and Lyn Alden, \"Full Steam Ahead: All Aboard Fiscal Dominance,\" Lyn Alden (January 2025) https://www.lynalden.com/full-steam-ahead-all-aboard-fiscal-dominance/\n\n#Macro #PrivateCredit #FixedIncome",
+      "hashtags": [
+        "#Macro",
+        "#FixedIncome",
+        "#PrivateCredit"
+      ],
+      "source": "Lyn Alden",
+      "visual": "stat_card",
+      "best_time": "08:30",
+      "character_count": 1247
+    },
+    {
+      "id": 2,
+      "template": "B",
+      "type": "deep_observation",
+      "post_text": "Most people think banks lend out deposits. They don't. Banks create deposits when they lend. The liability and the asset are born simultaneously.\n\nThis matters more than most investors realize. When credit expands, broad money grows. When loans are repaid or written off, money contracts. The Fed doesn't fully control this. Commercial banks do, through their collective lending decisions.\n\nWhat gets missed: monetary inflation isn't just a central bank story. It's a banking system story. If credit demand collapses or lending standards tighten hard, you can have loose Fed policy and still get disinflation. Japan ran that experiment for decades.\n\nSo when you're building a macro view, the question isn't only \"what is the Fed doing?\" It's \"what are banks doing with their balance sheets right now?\"\n\nAre we in a credit expansion or a quiet contraction?\n\nSource: Lyn Alden, \"Fractional Reserve Banking 101\" (lynalden.com/fractional-reserve-banking)\n\n#PrivateCredit #MacroFinance #CapitalMarkets",
+      "hashtags": [
+        "#CapitalMarkets",
+        "#Macro",
+        "#PrivateCredit"
+      ],
+      "source": "Lyn Alden",
+      "visual": "quote_card",
+      "best_time": "12:00",
+      "character_count": 996
+    },
+    {
+      "id": 3,
+      "template": "E",
+      "type": "private_credit",
+      "post_text": "Bitcoin tracks global liquidity 83% of the time over any 12-month period.\n\nThat number stopped me. Not because it validates Bitcoin as an asset class, but because of what it reveals about how capital actually moves through the system.\n\nPrivate credit spreads, repo conditions, central bank balance sheet expansion, cross-border dollar flows. These are the same inputs that determine where institutional capital migrates. Bitcoin is not leading that cycle. It is reflecting it.\n\nWhen liquidity contracts, risk premiums reprice across the entire stack. Public credit first, then private, then the edges. When liquidity expands, the sequencing reverses. Bitcoin, it turns out, is sitting at the far edge of that same topology.\n\nThe implication for institutional allocators is not about Bitcoin specifically. It is about using unconventional barometers to read the actual settlement conditions of global capital, not the reported ones.\n\nThe gap between where capital is reported to flow and where it actually flows is where the most interesting positioning happens.\n\nIf Bitcoin is your most honest liquidity signal, what does that say about the opacity of everything else?\n...",
+      "hashtags": [
+        "#PrivateCredit",
+        "#CapitalMarkets",
+        "#Macro"
+      ],
+      "source": "Lyn Alden",
+      "visual": "bar_chart",
+      "best_time": "15:00",
+      "character_count": 1172
+    },
+    {
+      "id": 4,
+      "template": "E",
+      "type": "private_credit",
+      "post_text": "Markets are pricing out geopolitical risk faster than the risk itself is resolving.\n\nThe Nasdaq and S&P are at all-time highs. Private credit concerns are receding. The narrative is: Hormuz stays open, Iran stays contained, and capital flows normalize.\n\nBut here is what that pricing implies: institutional allocators are not hedging tail scenarios. They are unwinding them.\n\nIn private credit specifically, spread compression in the absence of fundamental resolution is not confidence. It is positioning. Capital is flowing into the asset class because rates are still elevated enough to make yields attractive, not because underlying credit quality has improved.\n\nThe question worth sitting with: when markets price out the thing they were pricing in, does the underlying risk disappear or does it just become invisible to the instruments tracking it?\n\nRabobank's Michael Every put it plainly. There are real-world signals supporting the optimism and signals that directly contradict it. The market has chosen which ones to hold.\n\nFor private credit investors, the relevant implication is simple. Illiquid instruments priced off compressed spreads during a geopolitical d\u00e9tente that has not been formalized carry a specific kind of risk. It does not show up until it does.\n...",
+      "hashtags": [
+        "#PrivateCredit",
+        "#CapitalMarkets",
+        "#Macro"
+      ],
+      "source": "ZeroHedge",
+      "visual": "bar_chart",
+      "best_time": "18:00",
+      "character_count": 1278
+    },
+    {
+      "id": 5,
+      "template": "F",
+      "type": "weekly_wrap",
+      "post_text": "Five things that moved the field this week.\n\n01. Full Steam Ahead: All Aboard Fiscal Dominance (Lyn Alden)\n02. Fractional Reserve Banking 101 (Lyn Alden)\n03. Bitcoin: A Global Liquidity Barometer (Lyn Alden)\n04. Can You Price In No Longer Pricing Things In? (ZeroHedge)\n05. The Rise of Bitcoin Stocks and Bonds (Lyn Alden)\n\nWhat I am watching next week: follow-through on the dynamics flagged by Lyn Alden. The headline is the surface. The settlement layer beneath it is what I am tracking.\n\n#Macro #CapitalMarkets #PrivateCredit",
+      "hashtags": [
+        "#Macro",
+        "#CapitalMarkets",
+        "#PrivateCredit"
+      ],
+      "source": "Multiple sources",
+      "visual": "weekly_wrap",
+      "best_time": "21:00",
+      "character_count": 529
+    }
+  ]
+}

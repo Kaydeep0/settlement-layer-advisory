@@ -1,0 +1,66 @@
+{
+  "date": "2026-04-17",
+  "block": 44882914,
+  "readings": {
+    "Federal Reserve": {
+      "phi_s": 2.21,
+      "status": "HIGH",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    },
+    "SEC": {
+      "phi_s": 1.29,
+      "status": "ELEVATED",
+      "mentions_today": 5,
+      "delta": "+0.2"
+    },
+    "CFTC": {
+      "phi_s": 0.83,
+      "status": "STABLE",
+      "mentions_today": 1,
+      "delta": "0.0"
+    },
+    "OCC": {
+      "phi_s": 1.54,
+      "status": "ELEVATED",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    },
+    "Circle": {
+      "phi_s": 2.03,
+      "status": "HIGH",
+      "mentions_today": 1,
+      "delta": "0.0"
+    },
+    "Coinbase": {
+      "phi_s": 1.35,
+      "status": "ELEVATED",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    },
+    "ONDO": {
+      "phi_s": 0.74,
+      "status": "STABLE",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    },
+    "BlackRock": {
+      "phi_s": 1.68,
+      "status": "ELEVATED",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    },
+    "Fireblocks": {
+      "phi_s": 0.51,
+      "status": "STABLE",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    },
+    "Ripple": {
+      "phi_s": 2.92,
+      "status": "HIGH",
+      "mentions_today": 0,
+      "delta": "-0.1"
+    }
+  }
+}
