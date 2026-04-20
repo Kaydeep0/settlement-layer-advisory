@@ -20,6 +20,7 @@ from typing import Optional
 # ---------------------------------------------------------------------------
 SOURCES_DIR = "/Users/kiran/SETTLEMENT_LAYER_ADVISORY/content_engine/sources"
 READINGS_PATH = "/Users/kiran/SETTLEMENT_LAYER_ADVISORY/content_engine/entity_readings.json"
+HELIX_COMMITS_PATH = "/Users/kiran/GENIUSFLOW_OS/workspace/geniusflow/data/helix_commits.json"
 
 # ---------------------------------------------------------------------------
 # Entity search terms (case-insensitive)
@@ -212,10 +213,30 @@ def main():
 
         print(f"  {entity:<18} {prev_phi:>10.2f} {mentions:>9} {format_delta(delta):>7} {new_phi:>10.2f} {status:<12}")
 
+    # Compute WFP score from latest helix commit
+    wfp_score: Optional[float] = None
+    wfp_block: Optional[int] = None
+    try:
+        import sys as _sys
+        _wfp_engine = "/Users/kiran/GENIUSFLOW_OS/workspace/geniusflow/engine"
+        if _wfp_engine not in _sys.path:
+            _sys.path.insert(0, _wfp_engine)
+        from brain.wfp import score_all_commits as _wfp_score_all
+        _wfp_results = _wfp_score_all(HELIX_COMMITS_PATH)
+        if _wfp_results:
+            _latest = sorted(_wfp_results, key=lambda x: x.get("block_number") or 0, reverse=True)[0]
+            wfp_score = _latest["V"]
+            wfp_block = _latest.get("block_number")
+            print(f"  WFP score (latest helix commit): V={wfp_score:.1%}  block={wfp_block}")
+    except Exception as _wfp_exc:
+        print(f"  [WARN] WFP score unavailable: {_wfp_exc}", file=sys.stderr)
+
     # Build output payload
     output = {
         "date":       source_date,
         "block":      helix_block,
+        "wfp_score":  wfp_score,
+        "wfp_block":  wfp_block,
         "readings":   new_readings,
     }
 

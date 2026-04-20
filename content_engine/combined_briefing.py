@@ -74,6 +74,42 @@ def load_personal_posts() -> dict:
 
 # ── Section builders ─────────────────────────────────────────────────────────
 
+def section_wfp(er_path: str = None) -> str:
+    """WFP verification confidence section for MASTER_BRIEFING."""
+    if er_path is None:
+        er_path = os.path.join(BASE, "entity_readings.json")
+    try:
+        er = json.loads(open(er_path).read())
+    except Exception:
+        return "## WFP VERIFICATION CONFIDENCE\n\n*entity_readings.json not found — run entity_readings_updater.py.*"
+
+    wfp_score = er.get("wfp_score")
+    wfp_block = er.get("wfp_block")
+    lines = ["## WFP VERIFICATION CONFIDENCE\n"]
+    if wfp_score is not None:
+        lines.append(f"V (latest helix commit) = **{wfp_score:.1%}**")
+        if wfp_block:
+            lines.append(f"Helix block: {wfp_block}")
+        lines.append("")
+        lines.append("Component breakdown (WFP v2.1):")
+        lines.append("- W_provenance: 0.98 (blockchain — immutable timestamp)")
+        lines.append("- Fidelity: computed from wallet track record + PT at commit time")
+        lines.append("- D: near-zero decay (on-chain anchor, on_chain_commit lambda = 0.001/yr)")
+        lines.append("- Anchor_boost: 1.15 (HelixHash anchor_strength = 1.0)")
+        lines.append("")
+        if wfp_score >= 0.90:
+            lines.append("Status: HIGH CONFIDENCE — institutional-grade verification.")
+        elif wfp_score >= 0.75:
+            lines.append("Status: STRONG — above licensed professional threshold.")
+        elif wfp_score >= 0.60:
+            lines.append("Status: MODERATE — above journalist primary threshold.")
+        else:
+            lines.append("Status: DEVELOPING — chain history building track record.")
+    else:
+        lines.append("*WFP score not yet computed — run entity_readings_updater.py.*")
+    return "\n".join(lines)
+
+
 def section_eigenstate(src: dict) -> str:
     readings = src.get("engine_readings", {})
     parkash  = src.get("parkash", {})
@@ -236,6 +272,10 @@ def build_briefing(sla_src, sla_posts, personal_src, personal_posts, today: str)
 ---
 
 {section_eigenstate(sla_src)}
+
+---
+
+{section_wfp()}
 
 ---
 

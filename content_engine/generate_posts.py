@@ -120,10 +120,20 @@ def load_sources(date_str: str) -> dict:
 # Template C formatter (no API call)
 # ---------------------------------------------------------------------------
 
-def format_template_c(engine_readings: dict, helix_block: int, date_display: str) -> str:
+def format_template_c(
+    engine_readings: dict,
+    helix_block: int,
+    date_display: str,
+    wfp_score: float = None,
+    observer_city: str = "Walnut Creek CA",
+    entity_city: str = "Washington DC",
+) -> str:
     """
     Format the engine signal post directly from structured data.
     Avoids API cost since the data is already structured.
+
+    wfp_score: WFP v2.1 verification confidence (0-1). If provided, appended
+               as a verification line so readers can assess observation quality.
     """
     lines = [f"Eigenstate Research field readings, {date_display}."]
     lines.append("")
@@ -147,6 +157,15 @@ def format_template_c(engine_readings: dict, helix_block: int, date_display: str
     lines.append(
         f"Every observation committed to Base mainnet before publication. Block {helix_block}."
     )
+
+    # WFP verification confidence line
+    if wfp_score is not None:
+        lines.append(
+            f"Verification confidence (WFP): {wfp_score:.0%}"
+        )
+        lines.append(
+            f"Anchor: {observer_city} observing {entity_city} jurisdiction"
+        )
 
     # Closing sentence about the highest reading
     if highest_entity:
@@ -427,9 +446,22 @@ def main():
     engine_readings = sources.get("engine_readings", {})
     helix_block = sources.get("helix_block", 44882914)
 
+    # Load WFP score from entity_readings.json if available
+    _wfp_score = None
+    try:
+        import json as _json
+        _er_path = os.path.join(os.path.dirname(__file__), "entity_readings.json")
+        if os.path.isfile(_er_path):
+            _er = _json.loads(open(_er_path).read())
+            _wfp_score = _er.get("wfp_score")
+    except Exception:
+        pass
+
     print(f"  Articles loaded: {len(articles)}")
     print(f"  Engine entities: {len(engine_readings)}")
     print(f"  Helix block: {helix_block}")
+    if _wfp_score is not None:
+        print(f"  WFP score: {_wfp_score:.1%}")
 
     # Build post plan
     plan = build_post_plan(list(articles), date_display)
@@ -456,7 +488,10 @@ def main():
         # Template C: format directly, no API call
         if template == "C":
             print("  Formatting engine signal post (no API call)...")
-            post_text = format_template_c(engine_readings, helix_block, date_display)
+            post_text = format_template_c(
+                engine_readings, helix_block, date_display,
+                wfp_score=_wfp_score,
+            )
             hashtags = ["#RWA", "#TokenizedAssets", "#Compliance"]
             source_label = "Eigenstate Research"
 
